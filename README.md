@@ -22,7 +22,9 @@ const routes = {
 ```
 
 **publicRoutes**: Have all public pages like: about-us, contact, etc. 
+
 **privateRoutes**:  Have all private pages like: profile, edit-profile, etc. If the user isn’t logged then must to show login page.
+
 **sessionRoutes**: Have all session pages like: login and sign-up. If the user is logged then must to redirect to private dashboard.
 (You can add more group routes or simple components with custom layout)
 
