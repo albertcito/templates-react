@@ -1,6 +1,6 @@
 ## Different Layouts with React Router
 
-This week I tried to create a different template for React with React Router 4. The idea is:
+This week I tried to create a different template for React with [React Router 4](https://reacttraining.com/react-router/). The idea is:
 
 - Code flexible able to manage many layouts.
 - Possibility to choose different layout for any component or a layout for a group of component.
