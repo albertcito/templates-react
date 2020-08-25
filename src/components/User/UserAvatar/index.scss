@@ -1,0 +1,9 @@
+.user-title-avatar {
+  .user-active.user-verified {
+    background-color: #42ca49;
+  }
+  .user-blocked,
+  .user-no-verified {
+    background-color: red;
+  }
+}

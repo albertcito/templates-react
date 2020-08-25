@@ -1,125 +1,122 @@
-## Different Layouts with React Router
+# Private and Different Layouts with React Router
 
-This week I tried to create a different template for React with [React Router 4](https://reacttraining.com/react-router/). The idea is:
+Review the updates and original post in in my [webpage](www.albertcito.com)
+
+I create a different template for React with React Router 4. The idea is:
 
 - Code flexible able to manage many layouts.
-- Possibility to choose different layout for any component or a layout for a group of component.
-- If user is not logged in the URL’s that required login, then show the public layout with login form.
+- Possibility to choose a different layout for any component or a layout for a group of components.
+- If a user is not logged in the URL’s that required a login, then show the public layout with a login form.
 - If the user is logged and their wants see the public page (like about-us), the layout must be the public layout with the possibility to see the private web page if click in a private URL.
 
-### Routes Variables
+## View Preview
+<div style="text-align:center">
+  <img 
+    src="https://cdn-images-1.medium.com/max/1600/1*Tp_SStzt1ZLK_wde4d3D3g.gif" 
+    style='max-width: 100%; height: auto'
+  />
+  <br />
+  You can see this working <a href="https://albertcito.github.io/react-template/">live here</a>
+</div>
 
-Routes variables are defined in this way:
+## Routes
 
-```js
-const routes = {
-  Page: {
-    path: '/page',
-    component: Page
+You can create the routes in this way. You can create many files that you want:
+```typescript
+// src/routes/private.tsx
+
+const routes: IRoute[] = [
+  {
+    component: Profile,
+    exact: true,
+    path: '/admin/profile',
+  },
+];
+```
+
+## Route Types
+
+There are three route types defined in the project.
+
+```typescript
+// src/routes/routeTypes.tsx
+
+export enum routeTypes {
+  private = 'private',
+  public = 'public',
+  session= 'session',
+}
+```
+
+**private**: private pages like profile, edit-profile, etc. If the user isn’t logged then must to show the login page.  
+**public**: public pages like about-us, contact, etc.  
+**session**: session pages like login and sign-up. If the user is logged then must to redirect to the private dashboard.  
+
+## Routes Template
+
+In this file you can define the routes, the template and the rights (public, private, session).
+
+```typescript
+// src/routes/index.tsx
+
+const routesTemplate: IRouteTemplate[] = [
+  {
+    routes: privateRoutes,
+    template: GlobalLayout,
+    type: routeTypes.private,
   },
   ...
-}
+];
+
 ```
 
-**publicRoutes**: Have all public pages like: about-us, contact, etc. 
+## Router
 
-**privateRoutes**:  Have all private pages like: profile, edit-profile, etc. If the user isn’t logged then must to show login page.
+It define the route and call the Auth.
 
-**sessionRoutes**: Have all session pages like: login and sign-up. If the user is logged then must to redirect to private dashboard.
-(You can add more group routes or simple components with custom layout)
+```typescript
+// src/start/Routes.tsx
 
-### Layouts
-
-Layout pages are defined in this way:
-```js
-render() {
-   const Component = this.props.component;
-   const route = this.props.route;
-   return (
-      <div>
-         <h1>Example Page Layout</h1>
-         <Component route={route}/>
-      </div>
-   );
-}
+routesTemplates.map((routesTemplate) => {
+  const { routes: appRoutes, template: Template , type} = routesTemplate;
+  return appRoutes.map( (appRoute) => {
+    return (
+      <Route
+        exact={appRoute.exact}
+        path={appRoute.path}
+        key={appRoute.path}
+        render={(route) =>
+          <Auth
+            appRoute={appRoute}
+            Template={Template}
+            route={route}
+            type={type}
+          />
+        }
+      />
+    );
+  });
+})
 ```
 
-### Template
+## Auth
 
-Template is where is defined the current template. It wait to verify if user is logged, after to print the interface.
+Verify the rights and redirection. 
 
-```js
-render() {
-  if (!this.props.user.verified) { return(<div>Loading...</div>); }
-  return (
-    <BrowserRouter>
-      <Switch>
-        
-        
-        
-        { _.map(publicRoutes, (route, key) => {
-          const { component, path } = route;
-          return (
-            <Route
-              exact
-              path={path}
-              key={key}
-              render={ (route) => 
-                 <PublicLayout 
-                   component={component}
-                   route={route} 
-                 /> 
-              }
-            />
-          )
-        })}
-        
-        { _.map(privateRoutes, (route, key) => {
-          const { component, path } = route;
-          return (
-            <Route
-              exact
-              path={path}
-              key={key}
-              render={ () => 
-                this.props.user.logged ? (
-                  <PrivateLayout 
-                      component={component}  
-                      route={route}
-                  />
-                ) : (
-                  <PublicLayout 
-                      component={LoginForm} 
-                      route={route}
-                  />
-                )
-              }
-            />
-          )
-        })}
-        { _.map(sessionRoutes, (route, key) => {
-          const { component, path } = route;
-          return (
-            <Route
-              exact
-              path={path}
-              key={key}
-              render={ () => 
-                this.props.user.logged ? (
-                  <Redirect to="/profile"/>
-                ) : (
-                  <PublicLayout 
-                      component={component} 
-                      route={route}
-                  />
-                )
-              }
-            />
-          )
-        })}
-        <Route component={ NotFound } />
-      </Switch>
-    </BrowserRouter>
-  );
+```typescript 
+// src/start/Auth.tsx
+
+if (isPrivate(type) && !global.logged) {
+  return <GlobalLayout Component={Error403} route={route} />;
 }
+
+if (isSession(type) && global.logged) {
+  return <Redirect to="/" />
+}
+
+const Layout = appRoute.template ? appRoute.template : Template;
+return <Layout
+  Component={appRoute.component}
+  route={route}
+/>;
 ```
