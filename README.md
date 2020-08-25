@@ -1,6 +1,6 @@
 # Private and Different Layouts with React Router
 
-Review the updates and original post in in my [webpage](www.albertcito.com)
+Review the updates and original post in in my [webpage](https://albertcito.com)
 
 I create a different template for React with React Router 4. The idea is:
 
@@ -16,7 +16,7 @@ I create a different template for React with React Router 4. The idea is:
     style='max-width: 100%; height: auto'
   />
   <br />
-  You can see this working <a href="https://albertcito.github.io/react-template/">live here</a>
+  You can see this working <a href="https://albertcito.github.io/templates-react/">live here</a>
 </div>
 
 ## Routes

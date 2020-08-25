@@ -1,6 +1,6 @@
 {
-  "name": "react-template",
-  "homepage": "http://albertcito.github.io/react-template",
+  "name": "templates-react",
+  "homepage": "http://albertcito.github.io/templates-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
