@@ -5,5 +5,5 @@ import PageProperties from '../../routes/PageProperties';
 
 export default interface LayoutPageProperties {
   Component: React.FC<PageProperties>;
-  route: RouteComponentProps;
+  route: RouteComponentProps<React.ReactNode>;
 }
