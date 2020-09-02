@@ -4,10 +4,10 @@ import {
   Switch,
   HashRouter,
 } from 'react-router-dom';
+
 import routesTemplates from 'routes';
 import { GlobalLayout } from 'templates';
 import { Error404 } from 'templates/errors';
-
 import Auth from './Auth';
 
 export default function Routes() {

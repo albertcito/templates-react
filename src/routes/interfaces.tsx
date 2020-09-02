@@ -1,19 +1,19 @@
-import AppPageInterface from './IAppPage';
-import ILayoutAppPage from '../templates/interfaces/ILayoutAppPage';
-import { routeTypes } from './routeTypes';
+import AppPageInterface from './PageProperties';
+import LayoutPageProperties from '../templates/interfaces/LayoutPageProperties';
+import { RouteTypeEnum } from './routeTypes';
 
-export interface IRoute {
+export interface RouteProperties {
   component: React.SFC<AppPageInterface>;
   exact?: boolean;
   params?: {
     [key: string]: any;
   };
   path: string;
-  template?: React.SFC<ILayoutAppPage>;
+  template?: React.SFC<LayoutPageProperties>;
 }
 
-export interface IRouteTemplate {
-  routes: IRoute[];
-  template: React.SFC<ILayoutAppPage>;
-  type: routeTypes;
+export interface RouteTemplateProperties {
+  routes: RouteProperties[];
+  template: React.SFC<LayoutPageProperties>;
+  type: RouteTypeEnum;
 }

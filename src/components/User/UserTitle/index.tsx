@@ -4,7 +4,7 @@ import React from 'react';
 import UserAvatar from '../UserAvatar';
 import './index.scss';
 
-interface UserTitleProps {
+interface UserTitleProperties {
   name: string;
   emailVerified: boolean;
   userStatusID: string;
@@ -12,7 +12,7 @@ interface UserTitleProps {
 
 const { Title } = Typography;
 
-const UserTitle: React.FC<UserTitleProps> = ({
+const UserTitle: React.FC<UserTitleProperties> = ({
   name,
   emailVerified,
   userStatusID,

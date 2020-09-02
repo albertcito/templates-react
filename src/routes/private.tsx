@@ -1,7 +1,7 @@
 import Profile from '../pages/Admin/Profile';
-import { IRoute } from './interfaces';
+import { RouteProperties } from './interfaces';
 
-const routes: IRoute[] = [
+const routes: RouteProperties[] = [
   {
     component: Profile,
     exact: true,

@@ -7,14 +7,11 @@ const onClick = () => notification.info({
   description: 'This feature will be implemented ASAP.',
 });
 
-interface LoginFormProps {
-  onLogin: (
-    email: string,
-    password: string,
-  ) => void;
+interface LoginFormProperties {
+  onLogin: (email: string, password: string) => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+const LoginForm: React.FC<LoginFormProperties> = ({ onLogin }) => {
   const onSubmit = ({ email, password }: {
     email: string;
     password: string;

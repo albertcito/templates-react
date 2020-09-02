@@ -1,6 +1,6 @@
 import React from 'react';
-import { GlobalContext, useGlobal } from 'use/global';
 
+import { GlobalContext, useGlobal } from 'use/global';
 import Routes from './Routes';
 
 const StartApp = () => {

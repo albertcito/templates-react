@@ -1,6 +1,6 @@
 import React from 'react';
-import { GlobalContext } from 'use/global';
 
+import { GlobalContext } from 'use/global';
 import LoginForm from './LoginForm';
 
 const Login: React.FC = () => {

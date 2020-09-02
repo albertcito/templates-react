@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ILayoutAppPage from '../interfaces/ILayoutAppPage';
+import LayoutPageProperties from '../interfaces/LayoutPageProperties';
 
-const PromotionLayout = ({ Component, route }: ILayoutAppPage) => (
+const PromotionLayout = ({ Component, route }: LayoutPageProperties) => (
   <div className='promotion-layout'>
     <Component route={route} />
   </div>

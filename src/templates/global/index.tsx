@@ -1,10 +1,10 @@
 import React from 'react';
 
-import ILayoutAppPage from '../interfaces/ILayoutAppPage';
+import LayoutPageProperties from '../interfaces/LayoutPageProperties';
 import { Footer, Header } from './components';
 import './css/index.scss';
 
-const GlobalLayout = ({ Component, route }: ILayoutAppPage) => (
+const GlobalLayout = ({ Component, route }: LayoutPageProperties) => (
   <div className='public-layout'>
     <Header />
     <div className='content-page'>

@@ -1,9 +1,9 @@
-export enum routeTypes {
+export enum RouteTypeEnum {
   private = 'private',
   public = 'public',
   session= 'session',
 }
 
-export const isPrivate = (routeType: routeTypes) => (routeType === routeTypes.private);
-export const isSession = (routeType: routeTypes) => (routeType === routeTypes.session);
-export const isPublic = (routeType: routeTypes) => (routeType === routeTypes.public);
+export const isPrivate = (routeType: RouteTypeEnum) => (routeType === RouteTypeEnum.private);
+export const isSession = (routeType: RouteTypeEnum) => (routeType === RouteTypeEnum.session);
+export const isPublic = (routeType: RouteTypeEnum) => (routeType === RouteTypeEnum.public);
