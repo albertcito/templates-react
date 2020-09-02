@@ -7,8 +7,10 @@ const onClick = () => notification.info({
   description: 'This feature will be implemented ASAP.',
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type onLoginType = (email: string, password: string) => void;
 interface LoginFormProperties {
-  onLogin: (email: string, password: string) => void;
+  onLogin: onLoginType;
 }
 
 const LoginForm: React.FC<LoginFormProperties> = ({ onLogin }) => {

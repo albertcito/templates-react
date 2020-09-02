@@ -1,3 +1,5 @@
+import React from 'react';
+
 import PageProperties from './PageProperties';
 import LayoutPageProperties from '../templates/interfaces/LayoutPageProperties';
 import { RouteTypeEnum } from './routeTypes';
@@ -6,6 +8,7 @@ export interface RouteProperties {
   component: React.FC<PageProperties>;
   exact?: boolean;
   params?: {
+    // To be solve, it's the URL params
     [key: string]: any;
   };
   path: string;

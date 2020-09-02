@@ -1,9 +1,11 @@
 import React from 'react';
 import { Typography } from 'antd';
 
+import PageProperties from 'routes/PageProperties';
+
 const { Paragraph, Title } = Typography;
 
-const AboutMe: React.FC = () => (
+const AboutMe: React.FC<PageProperties> = () => (
   <div>
     <Title>
       About Me

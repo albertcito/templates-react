@@ -8,10 +8,10 @@ import { Error403 } from 'templates/errors';
 import AppPageInterface from 'templates/interfaces/LayoutPageProperties';
 import { GlobalContext } from 'use/global';
 
-interface AuthProperties {
+interface AuthProperties<T = React.ReactNode> {
   appRoute: RouteProperties;
   Template: React.SFC<AppPageInterface>;
-  route: RouteComponentProps<any, any, any>;
+  route: RouteComponentProps<T>;
   type: RouteTypeEnum;
 }
 const Auth = ({ appRoute, Template, route, type }: AuthProperties) => {
