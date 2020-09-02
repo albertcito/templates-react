@@ -1,7 +1,8 @@
 import React from 'react';
 import { Typography } from 'antd';
-const Index: React.FC = () => {
-  return <div>
+
+const Index: React.FC = () => (
+  <div>
     <Typography.Title>
       Welcome to the Private Area
     </Typography.Title>
@@ -9,5 +10,5 @@ const Index: React.FC = () => {
       Hello there, this is the private area.
     </Typography.Paragraph>
   </div>
-};
+);
 export default Index;

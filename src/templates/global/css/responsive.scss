@@ -1,20 +1,22 @@
 @media (max-width: 1024px) {
-    .content-width {
-        width: 100%;
-        padding: 0 25px;
-    }
-    .table-wrap {
-        overflow: auto;
-        width: 100%;
-    }
+  .content-width {
+    width: 100%;
+    padding: 0 25px;
+  }
+
+  .table-wrap {
+    overflow: auto;
+    width: 100%;
+  }
 }
 
 @media (max-width: 575px) {
-    .menu .menu-responsive-button { display: inline-block; }
-    .footer {
-        .ant-col-xs-24,
-        .footer-menu {
-            text-align: center;
-        }
+  .menu .menu-responsive-button { display: inline-block; }
+
+  .footer {
+    .ant-col-xs-24,
+    .footer-menu {
+      text-align: center;
     }
+  }
 }

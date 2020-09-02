@@ -2,14 +2,13 @@ import { InboxOutlined, LockOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Spin, notification } from 'antd';
 import React from 'react';
 
-const EmailForm: React.FC = () => {
+const onFinish = () => notification.info({
+  message: 'To be implemented',
+  description: 'This feature will be implemented ASAP.',
+});
 
-  const onFinish = () => notification.info({
-    message: 'To be implemented',
-    description: 'This feature will be implemented ASAP.',
-  });
-
-  return (<Spin spinning={false}>
+const EmailForm: React.FC = () => (
+  <Spin spinning={false}>
     <Form initialValues={{ email: 'me@albertcito.com' }} onFinish={onFinish}>
       <Form.Item
         name='email'
@@ -62,6 +61,7 @@ const EmailForm: React.FC = () => {
         </Button>
       </Form.Item>
     </Form>
-  </Spin>);
-};
+  </Spin>
+);
+
 export default EmailForm;

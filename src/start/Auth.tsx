@@ -14,21 +14,22 @@ interface IAuth {
   type: routeTypes;
 }
 const Auth = ({ appRoute, Template, route, type }: IAuth) => {
-
   const global = React.useContext(GlobalContext);
 
   if (isPrivate(type) && !global.logged) {
     return <GlobalLayout Component={Error403} route={route} />;
   }
   if (isSession(type) && global.logged) {
-    return <Redirect to="/" />
+    return <Redirect to='/' />;
   }
 
   const Layout = appRoute.template ? appRoute.template : Template;
-  return <Layout
-    Component={appRoute.component}
-    route={route}
-  />;
+  return (
+    <Layout
+      Component={appRoute.component}
+      route={route}
+    />
+  );
 };
 
 export default Auth;

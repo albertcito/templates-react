@@ -7,28 +7,28 @@ const onClick = () => notification.info({
   description: 'This feature will be implemented ASAP.',
 });
 
-interface ILoginFormProps {
+interface LoginFormProps {
   onLogin: (
     email: string,
     password: string,
   ) => void;
 }
 
-const LoginForm: React.FC<ILoginFormProps> = ({onLogin}) => {
-
+const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const onSubmit = ({ email, password }: {
-    email: string,
-    password: string,
+    email: string;
+    password: string;
   }) => {
     onLogin(email, password);
   };
 
-  return (<Spin spinning={false}>
-    <div className='modal session-form'>
+  return (
+    <Spin spinning={false}>
+      <div className='modal session-form'>
         <h2 className='modal-title'>
           Login
         </h2>
-        <Form onFinish={onSubmit} initialValues={{email: 'me@albertcito.com', password: '123456'}}>
+        <Form onFinish={onSubmit} initialValues={{ email: 'me@albertcito.com', password: '123456' }}>
           <Form.Item
             name='email'
             rules={[
@@ -43,30 +43,30 @@ const LoginForm: React.FC<ILoginFormProps> = ({onLogin}) => {
             ]}
             hasFeedback
           >
-          <Input
-            autoComplete='email'
-            placeholder="Email"
-            size='large'
-            type='email'
-            prefix={<InboxOutlined />}
-          />
-        </Form.Item>
+            <Input
+              autoComplete='email'
+              placeholder='Email'
+              size='large'
+              type='email'
+              prefix={<InboxOutlined />}
+            />
+          </Form.Item>
 
-        <Form.Item
-          name='password'
-          rules={[{
-            required: true,
-            message: 'Please input your password',
-          }]}
-          hasFeedback
-        >
-          <Input.Password
-            autoComplete='password'
-            size='large'
-            placeholder="Password"
-            prefix={<LockOutlined />}
-          />
-        </Form.Item>
+          <Form.Item
+            name='password'
+            rules={[{
+              required: true,
+              message: 'Please input your password',
+            }]}
+            hasFeedback
+          >
+            <Input.Password
+              autoComplete='password'
+              size='large'
+              placeholder='Password'
+              prefix={<LockOutlined />}
+            />
+          </Form.Item>
           <Form.Item>
             <Button
               type='primary'
@@ -75,18 +75,21 @@ const LoginForm: React.FC<ILoginFormProps> = ({onLogin}) => {
             >
               Submit
             </Button>
-            <Button type='link' className='login-form-forgot'  onClick={onClick}>
+            <Button type='link' className='login-form-forgot' onClick={onClick}>
               Forgot Password
             </Button>
           </Form.Item>
         </Form>
         <p className='session-form-already'>
-          Don't have an account? <Button type='link' className='link-button' onClick={onClick}>
+          Don&#39;t have an account?
+          {' '}
+          <Button type='link' className='link-button' onClick={onClick}>
             <b>Singup</b>
           </Button>
         </p>
       </div>
-    </Spin>);
-}
+    </Spin>
+  );
+};
 
 export default LoginForm;

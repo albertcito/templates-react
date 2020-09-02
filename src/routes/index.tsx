@@ -1,4 +1,5 @@
 import { GlobalLayout } from 'templates';
+
 import { IRouteTemplate } from './interfaces';
 import privateRoutes from './private';
 import publicRoutes from './public';
