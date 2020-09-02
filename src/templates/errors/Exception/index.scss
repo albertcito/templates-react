@@ -6,11 +6,13 @@
 
   .exception-page-img {
     text-align: center;
+
     img {
       width: 70%;
       height: auto;
     }
   }
+
   .exception-page-content {
     flex: auto;
 
@@ -21,9 +23,10 @@
       font-size: 72px;
       line-height: 72px;
     }
+
     .exception-page-desc {
       margin-bottom: 16px;
-      color: rgba(0,0,0,.45);
+      color: rgba(0, 0, 0, 0.45);
       font-size: 20px;
       line-height: 28px;
     }

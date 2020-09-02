@@ -1,18 +1,18 @@
 import React from 'react';
-import ILayoutAppPage from '../interfaces/ILayoutAppPage';
+
+import LayoutPageProperties from '../interfaces/LayoutPageProperties';
 import { Footer, Header } from './components';
 import './css/index.scss';
 
-const GlobalLayout = ({ Component, route }: ILayoutAppPage) => {
- return <div className='public-layout'>
+const GlobalLayout = ({ Component, route }: LayoutPageProperties) => (
+  <div className='public-layout'>
     <Header />
     <div className='content-page'>
-      <div className='content-width breadcrumbs'>
-      </div>
+      <div className='content-width breadcrumbs' />
       <Component route={route} />
     </div>
     <Footer />
- </div>;
-};
+  </div>
+);
 
 export default GlobalLayout;

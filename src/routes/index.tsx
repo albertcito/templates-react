@@ -1,25 +1,25 @@
 import { GlobalLayout } from 'templates';
-import { IRouteTemplate } from './interfaces';
+import { RouteTemplateProperties } from './interfaces';
 import privateRoutes from './private';
 import publicRoutes from './public';
 import sessionRoutes from './session';
-import { routeTypes } from './routeTypes';
+import { RouteTypeEnum } from './routeTypes';
 
-const routesTemplate: IRouteTemplate[] = [
+const routesTemplate: RouteTemplateProperties[] = [
   {
     routes: publicRoutes,
     template: GlobalLayout,
-    type: routeTypes.public,
+    type: RouteTypeEnum.public,
   },
   {
     routes: privateRoutes,
     template: GlobalLayout,
-    type: routeTypes.private,
+    type: RouteTypeEnum.private,
   },
   {
     routes: sessionRoutes,
     template: GlobalLayout,
-    type: routeTypes.session,
+    type: RouteTypeEnum.session,
   },
 ];
 export default routesTemplate;

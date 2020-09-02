@@ -1,10 +1,11 @@
 import React from 'react';
-import ILayoutAppPage from '../interfaces/ILayoutAppPage';
 
-const PromotionLayout = ({ Component, route }: ILayoutAppPage) => {
- return <div className='promotion-layout'>
+import LayoutPageProperties from '../interfaces/LayoutPageProperties';
+
+const PromotionLayout = ({ Component, route }: LayoutPageProperties) => (
+  <div className='promotion-layout'>
     <Component route={route} />
- </div>;
-};
+  </div>
+);
 
 export default PromotionLayout;

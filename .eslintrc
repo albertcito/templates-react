@@ -1,18 +1,90 @@
 {
-  "root": true,
-  "parser": "@typescript-eslint/parser",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
   "plugins": [
     "@typescript-eslint",
-    "prettier"
+    "eslint-comments",
+    "jest",
+    "promise",
+    "unicorn",
+    "import",
+    "react-hooks"
   ],
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
+    "airbnb-typescript",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "plugin:eslint-comments/recommended",
+    "plugin:jest/recommended",
+    "plugin:promise/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:import/errors",
+    "plugin:import/typescript"
   ],
   "rules": {
-    "no-console": 0, // Remember, this means error!
-    "prettier/prettier": 2
+    "max-len": [2, 120],
+    "react/jsx-props-no-spreading": 0,
+    "react/prop-types": 0,
+    "react/button-has-type": 0,
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          ".storybook/**",
+          "stories/**",
+          "**/*.stories.tsx"
+        ]
+      }
+    ],
+    "jsx-a11y/label-has-associated-control": [ 2, {
+      "labelComponents": ["Label"],
+      "labelAttributes": ["title"],
+      "controlComponents": ["Input", "Checkbox", "FancyCheckbox", "Toggle"],
+      "depth": 3
+    }],
+    "object-curly-newline": [2, { "multiline": true }],
+    "unicorn/filename-case": 0,
+    "unicorn/prefer-query-selector": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "whitelist": {
+          "props": true,
+          "otherProps": true,
+          "hoverRef": true,
+          "useCombinedRefs": true,
+          "targetRef": true,
+          "refs": true,
+          "ref": true
+        }
+      }
+    ],
+    "eslint-comments/disable-enable-pair": ["error", {"allowWholeFile": true}],
+    "import/order": ["error", {
+      "groups": [
+        ["external", "builtin"],
+        ["internal", "index", "sibling", "parent"]
+      ],
+      "newlines-between": "always"
+    }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "project": "src"
+      }
+    }
   }
 }

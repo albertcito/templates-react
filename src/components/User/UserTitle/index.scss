@@ -1,27 +1,33 @@
 .user-title {
   margin-bottom: 20px;
 }
+
 .user-title-avatar {
   float: left;
   margin-right: 10px;
 }
+
 .user-title-data {
   .ant-typography {
     margin-bottom: 0;
   }
+
   ul {
     margin: 0;
     margin-top: -6px;
+
     li {
       display: inline;
       color: #999;
       font-size: 13px;
       font-style: italic;
+
       &::before {
         content: "|";
         padding: 0 5px;
       }
     }
+
     li:first-child {
       &::before {
         padding: 0;
