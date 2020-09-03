@@ -2639,6 +2639,13 @@ axe-core@^3.5.4:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.5.5.tgz#84315073b53fa3c0c51676c588d59da09a192227"
   integrity sha512-5P0QZ6J5xGikH780pghEdbEKijCTrruK9KxtPZCFWUpef0f6GipO+xEZ5GKCb020mmqgbiNO6TcA55CriL784Q==
 
+axios@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
+  integrity sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
+  dependencies:
+    follow-redirects "^1.10.0"
+
 axobject-query@^2.0.2, axobject-query@^2.1.2:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.2.0.tgz#943d47e10c0b704aa42275e20edf3722648989be"
@@ -5625,7 +5632,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
@@ -12762,6 +12769,18 @@ type@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/type/-/type-2.1.0.tgz#9bdc22c648cf8cf86dd23d32336a41cfb6475e3f"
   integrity sha512-G9absDWvhAWCV2gmF1zKud3OyC61nZDwWvBL2DApaVFogI07CprggiQAOOjvp2NRjYWFzPyu7vwtDrQFq8jeSA==
+
+typed-graphql-class@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/typed-graphql-class/-/typed-graphql-class-1.0.4.tgz#4c9f96ef24e13d3eecf0a969dc983a0187258b14"
+  integrity sha512-NO5i0IXICNw3eYkrLijeusNiM/rXIe/pOUs576R6E2izKmf0BM08ZlDsa7634YfpONaBJAFgxAsMREutAOZ7zg==
+  dependencies:
+    typed-graphqlify "^2.3.0"
+
+typed-graphqlify@^2.3.0:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/typed-graphqlify/-/typed-graphqlify-2.4.4.tgz#e7354053b81dd858cd04c524e39722d27572fded"
+  integrity sha512-ZTjFeRmve31nFKgzKnduqiXqaWACP/eVtNuc85GADFOHyjGLCZxA43ylSueXIhQgZLeVsocE94JLVc7pL1064A==
 
 typed-scss-modules@^1.1.0:
   version "1.4.0"
