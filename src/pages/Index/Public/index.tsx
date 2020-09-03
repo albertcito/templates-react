@@ -12,4 +12,5 @@ const Index: React.FC = () => (
     </Typography.Paragraph>
   </div>
 );
+
 export default Index;
