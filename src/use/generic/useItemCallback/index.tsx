@@ -1,31 +1,28 @@
 import React from 'react';
 
-import paginationRequest from 'util/dataFormat/paginationRequest';
-import { PaginationDataFormat, PaginationDataServerFormat } from 'util/dataFormat/serverDataFormat';
+import requestData from 'util/dataFormat/requestData';
 import { StatusFormat, ErrorFormat } from 'util/dataFormat/globalStateFormat';
 import { StructFormat, set } from 'util/stateHandler/struct';
 
 interface RemoveItemProperties<T> {
-  onRemove: () => Promise<PaginationDataServerFormat<T>>;
+  onRemove: () => Promise<T>;
   key: string | number;
   onBefore?: () => void;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onSuccess?: (response: PaginationDataServerFormat<T>) => void;
+  onSuccess?: (response: T) => void;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onFail?: (errors: ErrorFormat) => void;
   onDone?: () => void;
 }
 
 function useItemCallback<T>() {
-  const [items, setItems] = React.useState<StructFormat<PaginationDataFormat<T>>>({});
   const [itemStatus, setItemStatus] = React.useState<StructFormat<StatusFormat>>({});
 
   const mounted = React.useRef(true);
-  // eslint-disable-next-line arrow-body-style
+
   React.useEffect(() => {
-    return () => {
-      mounted.current = false;
-    };
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    () => { mounted.current = false; };
   }, []);
 
   const removeItem = React.useCallback(async ({
@@ -36,7 +33,7 @@ function useItemCallback<T>() {
     onFail,
     onDone,
   }: RemoveItemProperties<T>) => {
-    paginationRequest(
+    requestData(
       () => {
         if (onBefore) {
           onBefore();
@@ -51,17 +48,9 @@ function useItemCallback<T>() {
         }
         return onRemove();
       },
-      (response: PaginationDataFormat<T>) => {
-        if (mounted.current) {
-          setItems((currentData) => {
-            if (key in currentData) {
-              return set(currentData, key, { ...currentData[key], ...response });
-            }
-            return { ...currentData, [key]: response };
-          });
-          if (onSuccess) {
-            onSuccess(response);
-          }
+      (response: T) => {
+        if (mounted.current && onSuccess) {
+          onSuccess(response);
         }
       },
       (errors: ErrorFormat) => {
@@ -92,7 +81,6 @@ function useItemCallback<T>() {
   }, []);
 
   return {
-    items,
     itemStatus,
     removeItem,
   };
