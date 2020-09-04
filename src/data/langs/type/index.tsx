@@ -2,7 +2,7 @@ import { types } from 'typed-graphql-class';
 import { IColumnType } from 'typed-graphql-class/dist/interfaces';
 
 export interface LangFormat {
-  langID: number;
+  langID: string;
   name: string;
   localName: string;
   active: boolean;

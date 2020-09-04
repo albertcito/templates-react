@@ -2,10 +2,11 @@ import React from 'react';
 
 import { PaginationArgumentsOptional, PaginationClass } from 'data/pagination/classes/PaginationClass';
 import { LangFormat } from '../type';
-import paginationRequest from 'util/dataFormat/paginationRequest';
 import LangsApi from '../queries/langs/api';
-import { PaginationDataFormat, ErrorFormat } from 'util/dataFormat/serverDataFormat';
-import { StatusFormat } from 'util/dataFormat/globalStateFormat';
+import useTableData from 'use/generic/useTableData';
+import useItemCallback from 'use/generic/useItemCallback';
+
+const langsApi = new LangsApi();
 
 function useLangs(
   parameters: PaginationArgumentsOptional = {},
@@ -16,30 +17,36 @@ function useLangs(
     parameters,
   )).current;
 
-  const [data, setData] = React.useState<PaginationDataFormat<LangFormat[]>>();
-  const [status, setStatus] = React.useState<StatusFormat>({
-    submit: false,
-    loaded: false,
-  });
-
-  const getData = React.useCallback(() => {
-    const langsApi = new LangsApi();
-    paginationRequest(
-      () => {
-        setStatus((currentStatus) => ({ ...currentStatus, submit: true }));
-        return langsApi.all(pagination.get());
-      },
-      (response: PaginationDataFormat<LangFormat[]>) => setData(response),
-      (errors: ErrorFormat) => setStatus((currentStatus) => ({ ...currentStatus, ...errors })),
-      () => setStatus((currentStatus) => ({ ...currentStatus, submit: false, loaded: true })),
-    );
-  }, [pagination]);
-
-  return {
-    pagination,
-    getData,
+  const {
     data,
     status,
+    getData,
+    removeItemData,
+  } = useTableData<LangFormat>();
+
+  const {
+    items,
+    itemStatus,
+    removeItem,
+  } = useItemCallback<LangFormat>();
+
+  const getAll = () => getData({ getAll: () => langsApi.all(pagination.get()) });
+  const onDelete = (langID: string) => removeItem({
+    onRemove: () => langsApi.delete(langID),
+    key: langID,
+    onSuccess: () => {
+      removeItemData('langID', langID);
+    },
+  });
+
+  return {
+    data,
+    status,
+    items,
+    itemStatus,
+    pagination,
+    getAll,
+    onDelete,
   };
 }
 

@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Operation } from 'typed-graphql-class';
 
+import constants from 'config/constants';
 import { PaginationDataFormat, SimpleDataFormat } from '../dataFormat/serverDataFormat';
 import { pageFormat, simpleFormat } from '../dataFormat/formatFunctions';
 
@@ -13,7 +14,7 @@ class ApiGraphQL {
   private readonly url: string;
 
   public constructor(url: string, interceptorSuccess?: InterceptorSuccessType) {
-    this.url = `http://127.0.0.1:8000/${url}`;
+    this.url = `${constants.urlServer}/${url}`;
     this.api = axios.create();
     this.api.interceptors.response.use(
       interceptorSuccess,

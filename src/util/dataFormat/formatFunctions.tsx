@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 
-import { ErrorFormat, SimpleDataFormat, PaginationDataFormat } from './serverDataFormat';
+import { SimpleDataServerFormat, PaginationDataServerFormat } from './serverDataFormat';
+import { ErrorFormat } from './globalStateFormat';
 
 const is404 = (errors: ErrorFormat): boolean => (errors
   && errors[0]
@@ -10,7 +11,7 @@ const is404 = (errors: ErrorFormat): boolean => (errors
 
 const getBaseFormat = (errors: ErrorFormat) => {
   const notFound = is404(errors);
-  const errorsData = (errors && !notFound) ? errors : null;
+  const errorsData = (errors && !notFound) ? errors : undefined;
   const result = {
     errors: errorsData,
     notFound,
@@ -18,7 +19,7 @@ const getBaseFormat = (errors: ErrorFormat) => {
   return result;
 };
 
-export function simpleFormat<T>(payload: AxiosResponse, key: string): SimpleDataFormat<T> {
+export function simpleFormat<T>(payload: AxiosResponse, key: string): SimpleDataServerFormat<T> {
   const response = payload.data;
   const baseFormat = getBaseFormat(response.errors);
   const data = (response.data && response.data[key]) ? response.data[key] : null;
@@ -28,7 +29,7 @@ export function simpleFormat<T>(payload: AxiosResponse, key: string): SimpleData
   };
 }
 
-export function pageFormat<T>(payload: AxiosResponse, key: string): PaginationDataFormat<T> {
+export function pageFormat<T>(payload: AxiosResponse, key: string): PaginationDataServerFormat<T> {
   const response = payload.data;
   let pagination = null;
   let data = null;

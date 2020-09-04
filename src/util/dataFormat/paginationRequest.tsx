@@ -1,23 +1,18 @@
-import { ErrorFormat, PaginationDataFormat } from './serverDataFormat';
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type TOnSuccess<T> = (response: PaginationDataFormat<T>) => void;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type TOnFail<T> = (errors: ErrorFormat) => void;
-export type TApi<T> = () => Promise<PaginationDataFormat<T>>;
+import { PaginationDataServerFormat } from './serverDataFormat';
+import { ErrorFormat } from './globalStateFormat';
 
 async function paginationRequest<T>(
-  api: TApi<T>,
-  onSuccess: TOnSuccess<T>,
-  onFail: TOnFail<T>,
+  api: () => Promise<PaginationDataServerFormat<T>>,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  onSuccess: (response: PaginationDataServerFormat<T>) => void,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  onFail: (errors: ErrorFormat) => void,
   onFinish?: () => void,
 ): Promise<void> {
   const payload = await api();
   if ('errors' in payload && (payload.errors || payload.notFound)) {
     onFail({
       errors: payload.errors,
-      loaded: true,
-      submit: false,
       notFound: payload.notFound,
     });
   } else {
