@@ -22,7 +22,8 @@ class ApiGraphQL {
     this.api = axios.create();
     this.api.interceptors.response.use(
       interceptorSuccess,
-      this.interceptorError,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (error: any) => { throw error; },
     );
   }
 
@@ -49,24 +50,6 @@ class ApiGraphQL {
     const payload = await this.api.post(this.url, operation.params(), config);
     return simpleFormat(payload, operation.name);
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private interceptorError = (error: any) => {
-    const networkError = (error.message === 'Network Error');
-    const status = error.response?.status;
-    return new Promise(
-      (resolve) => resolve({
-        status,
-        data: {
-          networkError,
-          errors: [{
-            type: 'messageError',
-            message: error.message,
-          }],
-        },
-      }),
-    );
-  };
 }
 
 export default ApiGraphQL;

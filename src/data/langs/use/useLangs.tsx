@@ -27,7 +27,6 @@ function useLangs(
 
   const { status, getData } = useStatusData<PaginationDataFormat<LangFormat[]>>();
   const [data, setData] = React.useState<PaginationDataFormat<LangFormat[]>>();
-
   const { itemStatus, removeItem } = useItemCallback<MessageDataFormat<LangFormat>>();
 
   const getAll = () => getData({
