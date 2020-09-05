@@ -3,13 +3,13 @@ import { LangKeys } from '../columns';
 import { LangColumnsType } from 'data/langs/type';
 
 class LangDeleteMutation extends MessagesDataMutation {
-  constructor(langID: number, columns: LangKeys[] = ['langID']) {
+  constructor(langID: string, columns: LangKeys[] = ['langID']) {
     super(
       'activityLangDelete',
       LangColumnsType,
       { langID },
       columns,
-      { lang_id: 'Int' },
+      { langID: 'String' },
     );
   }
 }

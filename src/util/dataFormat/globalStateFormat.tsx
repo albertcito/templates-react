@@ -1,18 +1,20 @@
-import { ErrorFormat, SimpleDataFormat, PaginationDataFormat } from './serverDataFormat';
-
-export interface BasicState<T> extends SimpleDataFormat<T> {
-  loaded: boolean;
-  submit: boolean;
+interface MessageError {
+  type: string;
+  code?: number;
 }
 
-export interface PageState<T> extends PaginationDataFormat<T> {
-  loaded: boolean;
-  submit: boolean;
+export interface ErrorFormat extends MessageError{
+  message: string;
+}
+
+export interface ErrorCodeFormat {
+  networkError?: boolean;
+  code?: number;
+  errors?: ErrorFormat[];
 }
 
 export interface StatusFormat {
+  error?: ErrorCodeFormat;
   loaded: boolean;
   submit: boolean;
-  notFound?: boolean;
-  errors?: ErrorFormat;
 }

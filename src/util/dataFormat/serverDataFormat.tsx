@@ -1,23 +1,28 @@
 import { MessageFormat } from 'data/message/type';
 import { PaginationFormat } from 'data/pagination/type';
+import { ErrorCodeFormat } from './globalStateFormat';
 
-export interface ErrorFormat {
-  [index: number]: any;
-  [key: string]: any;
-  printKey?: boolean;
-  message?: string;
-}
-
-export interface DataErrorsFormat<T> {
+export interface SimpleDataFormat<T> {
   data: T;
-  errors: ErrorFormat | null;
 }
 
-export interface SimpleDataFormat<T> extends DataErrorsFormat<T> {
-  notFound?: boolean;
+export interface MessageDataFormat<T> extends SimpleDataFormat<T> {
+  messages?: MessageFormat[];
 }
 
 export interface PaginationDataFormat<T> extends SimpleDataFormat<T> {
   pagination: PaginationFormat;
   messages?: MessageFormat[];
+}
+
+export interface SimpleDataErrorFormat<T> extends SimpleDataFormat<T> {
+  error?: ErrorCodeFormat;
+}
+
+export interface MessageDataErrorFormat<T> extends MessageDataFormat<T> {
+  error?: ErrorCodeFormat;
+}
+
+export interface PaginationDataErrorFormat<T> extends PaginationDataFormat<T> {
+  error?: ErrorCodeFormat;
 }

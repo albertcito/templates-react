@@ -1,7 +1,7 @@
 import ApiGraphQL from 'util/api/ApiGraphQL';
 import { LangFormat } from '../../type';
 import { LangColumns } from '../columns';
-import { PaginationDataFormat } from 'util/dataFormat/serverDataFormat';
+import { MessageDataFormat } from 'util/dataFormat/serverDataFormat';
 import { LangCreateMutation, LangCreateArguments } from './LangCreateMutation';
 import { LangUpdateArguments, LangUpdateMutation } from './LangUpdateMutation';
 import LangQuery from './LangQuery';
@@ -12,15 +12,15 @@ class LangApi {
     private api = new ApiGraphQL('graphql'),
   ) {}
 
-  public async add(fields: LangCreateArguments): Promise<PaginationDataFormat<LangFormat>> {
+  public async add(fields: LangCreateArguments): Promise<MessageDataFormat<LangFormat>> {
     return this.api.pageFormat(new LangCreateMutation(fields, this.columns));
   }
 
-  public async gets(langID: number): Promise<PaginationDataFormat<LangFormat>> {
+  public async get(langID: number): Promise<MessageDataFormat<LangFormat>> {
     return this.api.pageFormat(new LangQuery(langID, this.columns));
   }
 
-  public async update(fields: LangUpdateArguments): Promise<PaginationDataFormat<LangFormat>> {
+  public async update(fields: LangUpdateArguments): Promise<MessageDataFormat<LangFormat>> {
     return this.api.pageFormat(new LangUpdateMutation(fields, this.columns));
   }
 }

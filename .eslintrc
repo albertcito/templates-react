@@ -32,20 +32,10 @@
       "error",
       "prefer-single"
     ],
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          ".storybook/**",
-          "stories/**",
-          "**/*.stories.tsx"
-        ]
-      }
-    ],
+    "import/no-extraneous-dependencies": ["error"],
     "jsx-a11y/label-has-associated-control": [ 2, {
       "labelComponents": ["Label"],
       "labelAttributes": ["title"],
-      "controlComponents": ["Input", "Checkbox", "FancyCheckbox", "Toggle"],
       "depth": 3
     }],
     "object-curly-newline": [2, { "multiline": true }],

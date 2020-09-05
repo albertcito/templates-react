@@ -2,7 +2,7 @@ export interface StructFormat<T> {
   [key: string ]: T;
 }
 
-export function append<T>(struct: StructFormat<T>, key: string | number, item: T): StructFormat<T> {
+export function set<T>(struct: StructFormat<T>, key: string | number, item: T): StructFormat<T> {
   return {
     ...struct,
     [key]: item,

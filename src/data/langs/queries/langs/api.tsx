@@ -4,9 +4,7 @@ import { LangFormat } from '../../type';
 import LangDeleteMutation from './LangDeleteMutation';
 import LangsQuery from './LangsQuery';
 import { LangColumns } from '../columns';
-import { PaginationDataFormat } from 'util/dataFormat/serverDataFormat';
-
-type LangPaginationType = PaginationDataFormat<LangFormat[]>;
+import { MessageDataErrorFormat, PaginationDataErrorFormat } from 'util/dataFormat/serverDataFormat';
 
 class LangsApi {
   public constructor(
@@ -14,14 +12,14 @@ class LangsApi {
     private api = new ApiGraphQL('graphql'),
   ) {}
 
-  public async delete(langID: number): Promise<LangPaginationType> {
-    return this.api.pageFormat(
-      new LangDeleteMutation(langID, ['langID']),
-    );
+  public async all(variables: PaginationArgumentsOptional = {}): Promise<PaginationDataErrorFormat<LangFormat[]>> {
+    return this.api.pageFormat(new LangsQuery(variables, this.columns));
   }
 
-  public async all(variables: PaginationArgumentsOptional = {}): Promise<LangPaginationType> {
-    return this.api.pageFormat(new LangsQuery(variables, this.columns));
+  public async delete(langID: string): Promise<MessageDataErrorFormat<LangFormat>> {
+    return this.api.messageFormat(
+      new LangDeleteMutation(langID, ['langID']),
+    );
   }
 }
 
