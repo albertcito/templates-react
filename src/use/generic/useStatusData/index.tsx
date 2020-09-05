@@ -1,7 +1,7 @@
 import React from 'react';
 
 import requestData from 'util/dataFormat/requestData';
-import { StatusFormat, ErrorNotFoundFormat } from 'util/dataFormat/globalStateFormat';
+import { StatusFormat, ErrorCodeFormat } from 'util/dataFormat/globalStateFormat';
 
 interface GetDataProperties<T> {
   /**
@@ -21,7 +21,7 @@ interface GetDataProperties<T> {
    * Run it when the request fail
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onFail?: (errors: ErrorNotFoundFormat) => void;
+  onFail?: (errors: ErrorCodeFormat) => void;
   /**
    * Run it when the request is done.
    */
@@ -67,7 +67,7 @@ function useStatusData<T>() {
           onSuccess(response);
         }
       },
-      (errors: ErrorNotFoundFormat) => {
+      (errors: ErrorCodeFormat) => {
         if (mounted.current) {
           setStatus((currentStatus) => ({ ...currentStatus, ...errors }));
           if (onFail) {

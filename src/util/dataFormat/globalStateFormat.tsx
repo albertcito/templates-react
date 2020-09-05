@@ -1,15 +1,20 @@
-export interface ErrorFormat {
-  [index: number]: any;
-  [key: string]: any;
-  printKey?: boolean;
-  message?: string;
+interface MessageError {
+  type: string;
+  code?: number;
 }
 
-export interface ErrorNotFoundFormat {
-  notFound?: boolean;
-  errors?: ErrorFormat;
+export interface ErrorFormat extends MessageError{
+  message: string;
 }
-export interface StatusFormat extends ErrorNotFoundFormat {
+
+export interface ErrorCodeFormat {
+  networkError?: boolean;
+  code?: number;
+  errors?: ErrorFormat[];
+}
+
+export interface StatusFormat {
+  error?: ErrorCodeFormat;
   loaded: boolean;
   submit: boolean;
 }

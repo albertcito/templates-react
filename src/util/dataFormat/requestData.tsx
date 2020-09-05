@@ -1,17 +1,21 @@
-import { ErrorNotFoundFormat } from './globalStateFormat';
+import { ErrorCodeFormat } from './globalStateFormat';
+
+interface PayloadError {
+  error: ErrorCodeFormat;
+}
 
 async function requestData<T>(
   api: () => Promise<T>,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onSuccess: (response: T) => void,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onFail: (errors: ErrorNotFoundFormat) => void,
+  onFail: (errors: ErrorCodeFormat) => void,
   onFinish?: () => void,
 ): Promise<void> {
   const payload = await api();
-  const asError = (payload as ErrorNotFoundFormat);
-  if (asError.errors || asError.notFound) {
-    onFail(asError);
+  const payloadError = (payload as unknown as PayloadError);
+  if (payloadError && payloadError.error) {
+    onFail(payloadError.error);
   } else {
     onSuccess(payload);
   }

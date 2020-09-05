@@ -1,7 +1,7 @@
 import React from 'react';
 
 import requestData from 'util/dataFormat/requestData';
-import { StatusFormat, ErrorFormat } from 'util/dataFormat/globalStateFormat';
+import { StatusFormat, ErrorCodeFormat } from 'util/dataFormat/globalStateFormat';
 import { StructFormat, set } from 'util/stateHandler/struct';
 
 interface RemoveItemProperties<T> {
@@ -11,7 +11,7 @@ interface RemoveItemProperties<T> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onSuccess?: (response: T) => void;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onFail?: (errors: ErrorFormat) => void;
+  onFail?: (errors: ErrorCodeFormat) => void;
   onDone?: () => void;
 }
 
@@ -19,10 +19,11 @@ function useItemCallback<T>() {
   const [itemStatus, setItemStatus] = React.useState<StructFormat<StatusFormat>>({});
 
   const mounted = React.useRef(true);
-
+  // eslint-disable-next-line arrow-body-style
   React.useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    () => { mounted.current = false; };
+    return () => {
+      mounted.current = false;
+    };
   }, []);
 
   const removeItem = React.useCallback(async ({
@@ -53,7 +54,7 @@ function useItemCallback<T>() {
           onSuccess(response);
         }
       },
-      (errors: ErrorFormat) => {
+      (errors: ErrorCodeFormat) => {
         if (mounted.current) {
           setItemStatus((currentStatus) => set(
             currentStatus,

@@ -2,7 +2,11 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Operation } from 'typed-graphql-class';
 
 import constants from 'config/constants';
-import { PaginationDataFormat, SimpleDataFormat } from '../dataFormat/serverDataFormat';
+import {
+  MessageDataErrorFormat,
+  PaginationDataErrorFormat,
+  SimpleDataErrorFormat,
+} from '../dataFormat/serverDataFormat';
 import { pageFormat, simpleFormat } from '../dataFormat/formatFunctions';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -22,20 +26,47 @@ class ApiGraphQL {
     );
   }
 
-  public async pageFormat<T>(operation: Operation, config: AxiosRequestConfig = {}): Promise<PaginationDataFormat<T>> {
+  public async messageFormat<T>(
+    operation: Operation,
+    config: AxiosRequestConfig = {},
+  ): Promise<MessageDataErrorFormat<T>> {
     const payload = await this.api.post(this.url, operation.params(), config);
     return pageFormat(payload, operation.name);
   }
 
-  public async simpleFormat<T>(operation: Operation, config: AxiosRequestConfig = {}): Promise<SimpleDataFormat<T>> {
+  public async pageFormat<T>(
+    operation: Operation,
+    config: AxiosRequestConfig = {},
+  ): Promise<PaginationDataErrorFormat<T>> {
+    const payload = await this.api.post(this.url, operation.params(), config);
+    return pageFormat(payload, operation.name);
+  }
+
+  public async simpleFormat<T>(
+    operation: Operation,
+    config: AxiosRequestConfig = {},
+  ): Promise<SimpleDataErrorFormat<T>> {
     const payload = await this.api.post(this.url, operation.params(), config);
     return simpleFormat(payload, operation.name);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private interceptorError = (error: any) => new Promise(
-    (resolve) => resolve({ data: { errors: error.message } }),
-  );
+  private interceptorError = (error: any) => {
+    const networkError = (error.message === 'Network Error');
+    const status = error.response?.status;
+    return new Promise(
+      (resolve) => resolve({
+        status,
+        data: {
+          networkError,
+          errors: [{
+            type: 'messageError',
+            message: error.message,
+          }],
+        },
+      }),
+    );
+  };
 }
 
 export default ApiGraphQL;
