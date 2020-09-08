@@ -1,6 +1,6 @@
 import React from 'react';
 
-import requestData from 'util/dataFormat/requestData';
+import requestData from 'util/api/util/requestData';
 import { StatusFormat, ErrorCodeFormat } from 'util/dataFormat/globalStateFormat';
 
 interface GetDataProperties<T> {
@@ -13,7 +13,7 @@ interface GetDataProperties<T> {
    */
   onBefore?: () => void;
   /**
-   * Run it when the request is successfull
+   * Run it when the request is successful
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onSuccess?: (response: T) => void;
@@ -37,7 +37,12 @@ function useStatusData<T>() {
     loaded: false,
   });
 
+  /**
+   * This variable help me to  prevent update the status if the
+   * component that use this function is not mounted
+   */
   const mounted = React.useRef(true);
+
   // eslint-disable-next-line arrow-body-style
   React.useEffect(() => {
     return () => {
@@ -58,7 +63,7 @@ function useStatusData<T>() {
           if (onBefore) {
             onBefore();
           }
-          setStatus((currentStatus) => ({ ...currentStatus, submit: true }));
+          setStatus((currentStatus) => ({ ...currentStatus, submit: true, errors: undefined }));
         }
         return getAll();
       },

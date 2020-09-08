@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PaginationDataFormat, MessageDataFormat } from 'util/dataFormat/serverDataFormat';
+import { PaginationDataFormat, MessageDataFormat } from 'util/api/util/serverDataFormat';
 import { PaginationArgumentsOptional, PaginationClass } from 'data/pagination/classes/PaginationClass';
 import { LangFormat } from '../type';
 import LangsApi from '../queries/langs/api';

@@ -11,7 +11,6 @@ const Index: React.FC = () => {
     onDelete,
     itemStatus,
   } = useLangs();
-console.log(itemStatus);
 
   return (
     <div>

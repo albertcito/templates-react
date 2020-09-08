@@ -1,11 +1,12 @@
-import { ErrorCodeFormat } from './globalStateFormat';
+import { ErrorCodeFormat } from '../../dataFormat/globalStateFormat';
+import ApiError from 'util/api/util/ApiError';
 
-interface PayloadError {
-  error: ErrorCodeFormat;
-}
-
+/**
+ * To format the errors from the conextion or server. It's like 401, 500, Network Error, etc.
+ * @param error
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const errorFormat = (error: any) => {
+const errorFormat = (error: any): ErrorCodeFormat => {
   const networkError = (error.message === 'Network Error');
   const status = error.response?.status;
   return {
@@ -28,19 +29,26 @@ async function requestData<T>(
 ): Promise<void> {
   try {
     const payload = await api();
-    const payloadError = (payload as unknown as PayloadError);
-    if (payloadError && payloadError.error) {
-      onFail(payloadError.error);
-    } else {
-      onSuccess(payload);
-    }
+    onSuccess(payload);
     if (onFinish) {
       onFinish();
     }
   } catch (error) {
-    onFail(errorFormat(error));
-    if (onFinish) { onFinish(); }
-    throw error;
+    // This is API error, as validation form.
+    if (error.constructor === ApiError) {
+      onFail(error.error);
+      if (onFinish) {
+        onFinish();
+      }
+    } else {
+      // This is network, auth or server error http status
+      onFail(errorFormat(error));
+      if (onFinish) {
+        onFinish();
+      }
+      // The global function have to handle the error to verify authorization (401)
+      throw error;
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import requestData from 'util/dataFormat/requestData';
+import requestData from 'util/api/util/requestData';
 import { StatusFormat, ErrorCodeFormat } from 'util/dataFormat/globalStateFormat';
 import { StructFormat, set } from 'util/stateHandler/struct';
 
@@ -18,6 +18,10 @@ interface RemoveItemProperties<T> {
 function useItemCallback<T>() {
   const [itemStatus, setItemStatus] = React.useState<StructFormat<StatusFormat>>({});
 
+  /**
+   * This variable help me to  prevent update the status if the
+   * component that use this function is not mounted
+   */
   const mounted = React.useRef(true);
   // eslint-disable-next-line arrow-body-style
   React.useEffect(() => {

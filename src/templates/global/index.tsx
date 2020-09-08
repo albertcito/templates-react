@@ -1,7 +1,7 @@
 import React from 'react';
 
 import LayoutPageProperties from '../interfaces/LayoutPageProperties';
-import { Footer, Header } from './components';
+import { Footer, Header } from './ui';
 import './css/index.scss';
 
 const GlobalLayout = ({ Component, route }: LayoutPageProperties) => (

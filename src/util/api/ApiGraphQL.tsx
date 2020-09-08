@@ -3,11 +3,11 @@ import { Operation } from 'typed-graphql-class';
 
 import constants from 'config/constants';
 import {
-  MessageDataErrorFormat,
-  PaginationDataErrorFormat,
-  SimpleDataErrorFormat,
-} from '../dataFormat/serverDataFormat';
-import { pageFormat, simpleFormat } from '../dataFormat/formatFunctions';
+  MessageDataFormat,
+  PaginationDataFormat,
+  SimpleDataFormat,
+} from './util/serverDataFormat';
+import { pageFormat, simpleFormat, messageFormat } from './util/formatFunctions';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type InterceptorSuccessType = ((value: AxiosResponse) => AxiosResponse | Promise<AxiosResponse>);
@@ -30,15 +30,15 @@ class ApiGraphQL {
   public async messageFormat<T>(
     operation: Operation,
     config: AxiosRequestConfig = {},
-  ): Promise<MessageDataErrorFormat<T>> {
+  ): Promise<MessageDataFormat<T>> {
     const payload = await this.api.post(this.url, operation.params(), config);
-    return pageFormat(payload, operation.name);
+    return messageFormat(payload, operation.name);
   }
 
   public async pageFormat<T>(
     operation: Operation,
     config: AxiosRequestConfig = {},
-  ): Promise<PaginationDataErrorFormat<T>> {
+  ): Promise<PaginationDataFormat<T>> {
     const payload = await this.api.post(this.url, operation.params(), config);
     return pageFormat(payload, operation.name);
   }
@@ -46,7 +46,7 @@ class ApiGraphQL {
   public async simpleFormat<T>(
     operation: Operation,
     config: AxiosRequestConfig = {},
-  ): Promise<SimpleDataErrorFormat<T>> {
+  ): Promise<SimpleDataFormat<T>> {
     const payload = await this.api.post(this.url, operation.params(), config);
     return simpleFormat(payload, operation.name);
   }

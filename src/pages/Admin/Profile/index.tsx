@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Tabs } from 'antd';
 
-import UserTitle from 'components/User/UserTitle';
+import UserTitle from 'ui/User/UserTitle';
 import { EmailForm, PasswordForm } from './Forms';
 
 const { Title } = Typography;

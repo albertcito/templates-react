@@ -1,7 +1,7 @@
 import ApiGraphQL from 'util/api/ApiGraphQL';
 import { LangFormat } from '../../type';
 import { LangColumns } from '../columns';
-import { MessageDataFormat } from 'util/dataFormat/serverDataFormat';
+import { MessageDataFormat } from 'util/api/util/serverDataFormat';
 import { LangCreateMutation, LangCreateArguments } from './LangCreateMutation';
 import { LangUpdateArguments, LangUpdateMutation } from './LangUpdateMutation';
 import LangQuery from './LangQuery';
