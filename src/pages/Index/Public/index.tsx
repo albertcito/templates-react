@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Button, Tag } from 'antd';
 
-import useLangs from 'data/langs/use/useLangs';
+import useLangs from 'data/lang/lang/use/useLangs';
 
 const Index: React.FC = () => {
   const {

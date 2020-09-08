@@ -10,7 +10,7 @@ export interface LangUpdateArguments extends LangCreateArguments {
 export class LangUpdateMutation extends MessagesDataMutation {
   constructor(variables: LangUpdateArguments, columns: LangColumns) {
     super(
-      'activityLangUpdate',
+      'langUpdate',
       LangColumnsType,
       variables,
       columns.fields,

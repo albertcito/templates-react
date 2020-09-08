@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ErrorFormat } from 'util/dataFormat/globalStateFormat';
 
-interface ErrorsProperties {
+export interface ErrorsProperties {
   errors: ErrorFormat[] | ErrorFormat;
 }
 
@@ -15,7 +15,7 @@ const Errors: React.FC<ErrorsProperties> = ({ errors }) => {
   }
 
   return (
-    <div>
+    <div className='errors-error'>
       {errors.map((error) => (
         <div key={error.message}>
           {error.message}

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { GlobalContext } from 'use/global';
 
 export default function Header() {
-  const global = React.useContext(GlobalContext);
+  const { sessions: { user }, logout: { logout } } = React.useContext(GlobalContext);
   const [afixClass, setAfixClass] = useState('');
 
   const globalMenu = [
@@ -19,7 +19,7 @@ export default function Header() {
     <Menu.Item key='logout'>
       <Button
         className='link-button-menu'
-        onClick={() => global.logout()}
+        onClick={() => logout()}
       >
         Logout
       </Button>
@@ -62,7 +62,7 @@ export default function Header() {
             </Col>
             <Col xs={0} sm={16} md={12} lg={16} xl={18}>
               <Menu mode='horizontal'>
-                {global.logged ? signInMenu : signOutMenu}
+                {user ? signInMenu : signOutMenu}
                 {globalMenu}
               </Menu>
             </Col>

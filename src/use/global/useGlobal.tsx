@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+
+import useSession, { UseSessionProperties } from 'use/global/useSession';
+import storage from 'util/Storage';
+import useLogout from 'data/security/session/logout/useLogout';
+import { StatusFormat } from 'util/dataFormat/globalStateFormat';
 
 export interface UseGlobalProperties {
-  logged: boolean;
-  login: () => void;
-  logout: () => void;
+  sessions: Omit<UseSessionProperties, 'getSession' | 'delSession'>;
+  logout: {
+    logout: () => void;
+    status: StatusFormat;
+  }
 }
 
 const rejectionServerCalls = (event: PromiseRejectionEvent) => {
@@ -17,7 +24,8 @@ const rejectionServerCalls = (event: PromiseRejectionEvent) => {
 };
 
 const useGlobal = (): UseGlobalProperties => {
-  const [logged, setLogged] = React.useState(false);
+  const { getSession, delSession, ...sessions } = useSession();
+  const { doLogout, status: logoutStatus } = useLogout();
 
   React.useEffect(() => {
     window.addEventListener('unhandledrejection', rejectionServerCalls);
@@ -26,18 +34,19 @@ const useGlobal = (): UseGlobalProperties => {
     };
   }, []);
 
-  const login = () => {
-    setLogged(true);
-  };
-
-  const logout = () => {
-    setLogged(false);
-  };
+  React.useEffect(() => {
+    const localUser = storage.getUser();
+    if (localUser) {
+      getSession(localUser);
+    }
+  }, [getSession]);
 
   return {
-    logged,
-    login,
-    logout,
+    sessions,
+    logout: {
+      logout: () => doLogout(delSession),
+      status: logoutStatus,
+    },
   };
 };
 

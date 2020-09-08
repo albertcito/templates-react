@@ -14,7 +14,7 @@ export const parameters = {
 export class LangCreateMutation extends MessagesDataMutation {
   constructor(variables: LangCreateArguments, columns: LangColumns) {
     super(
-      'activityLangCreate',
+      'langCreate',
       LangColumnsType,
       variables,
       columns.fields,

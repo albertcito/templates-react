@@ -7,6 +7,7 @@ import { GlobalLayout } from 'templates/';
 import { Error403 } from 'templates/errors';
 import AppPageInterface from 'templates/interfaces/LayoutPageProperties';
 import { GlobalContext } from 'use/global';
+import { Spin } from 'antd';
 
 interface AuthProperties<T = React.ReactNode> {
   appRoute: RouteProperties;
@@ -15,21 +16,27 @@ interface AuthProperties<T = React.ReactNode> {
   type: RouteTypeEnum;
 }
 const Auth = ({ appRoute, Template, route, type }: AuthProperties) => {
-  const global = React.useContext(GlobalContext);
+  const { sessions: { user, status }, logout: { status: statusLogout } } = React.useContext(GlobalContext);
 
-  if (isPrivate(type) && !global.logged) {
+  if (status.submit) {
+    return <>...loading</>;
+  }
+
+  if (isPrivate(type) && !user) {
     return <GlobalLayout Component={Error403} route={route} />;
   }
-  if (isSession(type) && global.logged) {
+  if (isSession(type) && user) {
     return <Redirect to='/' />;
   }
 
   const Layout = appRoute.template ? appRoute.template : Template;
   return (
-    <Layout
-      Component={appRoute.component}
-      route={route}
-    />
+    <Spin spinning={statusLogout.submit}>
+      <Layout
+        Component={appRoute.component}
+        route={route}
+      />
+    </Spin>
   );
 };
 

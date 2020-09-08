@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { GlobalContext } from 'use/global';
 import LoginForm from './LoginForm';
+import useLogin from 'data/security/session/login/useLogin';
 
 const Login: React.FC = () => {
-  const global = React.useContext(GlobalContext);
+  const { doLogin, status } = useLogin();
   return (
     <div style={{ maxWidth: 450, margin: '0 auto' }}>
-      <LoginForm onLogin={() => global.login()} />
+      <LoginForm onLogin={doLogin} status={status} />
     </div>
   );
 };

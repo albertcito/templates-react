@@ -1,11 +1,11 @@
 import MessagesDataMutation from 'util/GraphQL/MessagesDataMutation';
 import { LangKeys } from '../columns';
-import { LangColumnsType } from 'data/langs/type';
+import { LangColumnsType } from '../../type';
 
 class LangDeleteMutation extends MessagesDataMutation {
   constructor(langID: string, columns: LangKeys[] = ['langID']) {
     super(
-      'activityLangDelete',
+      'langDelete',
       LangColumnsType,
       { langID },
       columns,

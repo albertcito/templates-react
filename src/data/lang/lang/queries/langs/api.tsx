@@ -1,4 +1,4 @@
-import { PaginationArgumentsOptional } from '../../../pagination/classes/PaginationClass';
+import { PaginationArgumentsOptional } from 'data/pagination/classes/PaginationClass';
 import ApiGraphQL from 'util/api/ApiGraphQL';
 import { LangFormat } from '../../type';
 import LangDeleteMutation from './LangDeleteMutation';

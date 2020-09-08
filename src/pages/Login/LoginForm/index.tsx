@@ -2,6 +2,9 @@ import { InboxOutlined, LockOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Spin, notification } from 'antd';
 import React from 'react';
 
+import { StatusFormat } from 'util/dataFormat/globalStateFormat';
+import AlertError from 'ui/Errors/AlertError';
+
 const onClick = () => notification.info({
   message: 'To be implemented',
   description: 'This feature will be implemented ASAP.',
@@ -11,9 +14,10 @@ const onClick = () => notification.info({
 type onLoginType = (email: string, password: string) => void;
 interface LoginFormProperties {
   onLogin: onLoginType;
+  status: StatusFormat;
 }
 
-const LoginForm: React.FC<LoginFormProperties> = ({ onLogin }) => {
+const LoginForm: React.FC<LoginFormProperties> = ({ onLogin, status }) => {
   const onSubmit = ({ email, password }: {
     email: string;
     password: string;
@@ -22,11 +26,17 @@ const LoginForm: React.FC<LoginFormProperties> = ({ onLogin }) => {
   };
 
   return (
-    <Spin spinning={false}>
+    <Spin spinning={status.submit}>
       <div className='modal session-form'>
         <h2 className='modal-title'>
           Login
         </h2>
+        {status.error?.errors && (
+          <AlertError
+            errors={status.error.errors}
+            mgBtm
+          />
+        )}
         <Form onFinish={onSubmit} initialValues={{ email: 'me@albertcito.com', password: '123456' }}>
           <Form.Item
             name='email'

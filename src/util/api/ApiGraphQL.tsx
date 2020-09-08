@@ -10,14 +10,15 @@ import {
 import { pageFormat, simpleFormat, messageFormat } from './util/formatFunctions';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-type InterceptorSuccessType = ((value: AxiosResponse) => AxiosResponse | Promise<AxiosResponse>);
+export type InterceptorSuccessType = ((value: AxiosResponse) => AxiosResponse | Promise<AxiosResponse>);
 
 class ApiGraphQL {
   protected readonly api: AxiosInstance;
 
-  private readonly url: string;
-
-  public constructor(url: string, interceptorSuccess?: InterceptorSuccessType) {
+  public constructor(
+    private readonly url = 'graphql',
+    interceptorSuccess?: InterceptorSuccessType,
+  ) {
     this.url = `${constants.urlServer}/${url}`;
     this.api = axios.create();
     this.api.interceptors.response.use(

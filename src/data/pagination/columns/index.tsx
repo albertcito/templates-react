@@ -11,7 +11,7 @@ export const paginationColumns: PaginationKeys[] = [
   'total',
 ];
 
-export class MessageColumns implements GraphQLColumns<PaginationKeys[]> {
+export class PaginationColumns implements GraphQLColumns<PaginationKeys[]> {
   public constructor(public readonly fields: PaginationKeys[] = paginationColumns) {
     this.fields = fields;
   }

@@ -5,7 +5,7 @@ import { LangColumns } from '../columns';
 class LangQuery extends MessagesDataQuery {
   constructor(langID: number, columns: LangColumns) {
     super(
-      'activityLang',
+      'lang',
       LangColumnsType,
       { langID },
       columns.fields,

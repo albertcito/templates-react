@@ -2,7 +2,8 @@ import { ErrorCodeFormat } from '../../dataFormat/globalStateFormat';
 import ApiError from 'util/api/util/ApiError';
 
 /**
- * To format the errors from the conextion or server. It's like 401, 500, Network Error, etc.
+ * To format the errors from the connection or server.
+ * It's like 401, 500, Network Error, etc.
  * @param error
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

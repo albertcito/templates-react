@@ -6,8 +6,8 @@ import Private from './Private';
 import Public from './Public';
 
 const Index: React.FC<PageProperties> = () => {
-  const global = React.useContext(GlobalContext);
-  if (global.logged) return <Private />;
+  const { sessions: { user } } = React.useContext(GlobalContext);
+  if (user) return <Private />;
   return <Public />;
 };
 export default Index;

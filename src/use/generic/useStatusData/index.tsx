@@ -21,7 +21,7 @@ interface GetDataProperties<T> {
    * Run it when the request fail
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onFail?: (errors: ErrorCodeFormat) => void;
+  onFail?: (error: ErrorCodeFormat) => void;
   /**
    * Run it when the request is done.
    */
@@ -63,7 +63,7 @@ function useStatusData<T>() {
           if (onBefore) {
             onBefore();
           }
-          setStatus((currentStatus) => ({ ...currentStatus, submit: true, errors: undefined }));
+          setStatus((currentStatus) => ({ ...currentStatus, submit: true, error: undefined }));
         }
         return getAll();
       },
@@ -72,11 +72,11 @@ function useStatusData<T>() {
           onSuccess(response);
         }
       },
-      (errors: ErrorCodeFormat) => {
+      (error: ErrorCodeFormat) => {
         if (mounted.current) {
-          setStatus((currentStatus) => ({ ...currentStatus, ...errors }));
+          setStatus((currentStatus) => ({ ...currentStatus, error }));
           if (onFail) {
-            onFail(errors);
+            onFail(error);
           }
         }
       },
