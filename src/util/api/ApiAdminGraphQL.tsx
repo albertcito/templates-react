@@ -15,7 +15,7 @@ class ApiAdminGraphQL {
   private readonly authType: string = 'Bearer ';
 
   public constructor(
-    private readonly url = 'graphql/admin',
+    url = 'graphql/admin',
     interceptorSuccess?: InterceptorSuccessType,
   ) {
     this.api = new ApiGraphQL(url, interceptorSuccess);
