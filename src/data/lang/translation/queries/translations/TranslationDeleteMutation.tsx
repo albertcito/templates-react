@@ -3,13 +3,13 @@ import { TranslationKeys } from '../columns';
 import { TranslationColumnsType } from '../../type';
 
 class TranslationDeleteMutation extends MessagesDataMutation {
-  constructor(translationID: string, columns: TranslationKeys[] = ['translationID']) {
+  constructor(translationID: number, columns: TranslationKeys[] = ['translationID']) {
     super(
       'translationDelete',
       TranslationColumnsType,
       { translationID },
       columns,
-      { translationID: 'String' },
+      { translationID: 'Int' },
     );
   }
 }

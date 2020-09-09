@@ -7,18 +7,14 @@ import Loading from 'ui/Loading';
 import {
   IDColumn,
   TextColumn,
+  DeleteColumn,
 } from 'util/columns';
 import TableColumns from 'util/columns/base/TableColumns';
 import { TranslationFormat } from 'data/lang/translation/type';
 
-const tableColumns = new TableColumns([
-  new IDColumn<TranslationFormat>('lang.translation.translation_id', 'translationID'),
-  new TextColumn<TranslationFormat>({ getTitle: (data: TranslationFormat) => data.text }),
-]);
-
 const Translation: React.FC = () => {
   const { appData: { langs } } = useContext(GlobalContext);
-  const { data, getAll, status, pagination } = useTranslations();
+  const { data, getAll, status, pagination, onDelete: onDeleteTranslation } = useTranslations();
 
   useEffect(() => { getAll(); }, [getAll]);
 
@@ -29,6 +25,12 @@ const Translation: React.FC = () => {
   if (!langs) {
     return <div>Langs should be already loaded</div>;
   }
+
+  const tableColumns = new TableColumns([
+    new IDColumn<TranslationFormat>('lang.translation.translation_id', 'translationID'),
+    new TextColumn<TranslationFormat>({ getTitle: (item: TranslationFormat) => item.text }),
+    new DeleteColumn<TranslationFormat>({ onDelete: (item) => onDeleteTranslation(item.translationID) }),
+  ]);
 
   return (
     <TableSearchLangApi

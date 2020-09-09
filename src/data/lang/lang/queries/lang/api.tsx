@@ -16,7 +16,7 @@ class LangApi {
     return this.api.pageFormat(new LangCreateMutation(fields, this.columns));
   }
 
-  public async get(langID: number): Promise<MessageDataFormat<LangFormat>> {
+  public async get(langID: string): Promise<MessageDataFormat<LangFormat>> {
     return this.api.pageFormat(new LangQuery(langID, this.columns));
   }
 

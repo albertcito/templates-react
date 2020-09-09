@@ -39,14 +39,14 @@ function useTranslations(
     onFail: notificationErrors,
   }), [getData, all]);
 
-  const removeItemData = React.useCallback((value: string, response: MessageDataFormat<TranslationFormat>) => {
+  const removeItemData = React.useCallback((value: number, response: MessageDataFormat<TranslationFormat>) => {
     setData((currentData) => removeByItem('translationID', value, currentData));
     if (response.messages) {
       notificationMessages(response.messages);
     }
   }, []);
 
-  const onDelete = (translationID: string) => removeItem({
+  const onDelete = (translationID: number) => removeItem({
     onRemove: () => translationsApi.delete(translationID),
     key: translationID,
     onSuccess: (response: MessageDataFormat<TranslationFormat>) => removeItemData(translationID, response),

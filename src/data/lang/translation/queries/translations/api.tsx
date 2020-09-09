@@ -16,7 +16,7 @@ class TranslationsApi {
     return this.api.pageFormat(new TranslationsQuery(variables, this.columns));
   }
 
-  public async delete(translationID: string): Promise<MessageDataFormat<TranslationFormat>> {
+  public async delete(translationID: number): Promise<MessageDataFormat<TranslationFormat>> {
     return this.api.messageFormat(
       new TranslationDeleteMutation(translationID, ['translationID']),
     );
