@@ -1,0 +1,21 @@
+.table-title-actions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  li {
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 13px;
+    border-left: 1px solid #ccc;
+    margin-left: 9px;
+    padding-left: 9px;
+
+    &:first-child {
+      border-left: 0;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}

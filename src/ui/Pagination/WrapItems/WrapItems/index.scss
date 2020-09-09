@@ -1,0 +1,25 @@
+.pagination-table {
+  .pagination-table-search {
+    margin-bottom: 10px;
+    .table-search {
+      margin-bottom: 5px;
+    }
+  }
+}
+.table-pagination-bottom {
+  .pagination {
+      padding: 20px 0;
+      ul {
+          text-align: center;
+      }
+  }
+}
+
+.table-pagination-top {
+  .pagination {
+      margin-bottom: 10px;
+      ul {
+          text-align: right;
+      }
+  }
+}

@@ -13,7 +13,7 @@ export interface TextFormat {
 interface TextFormatColumn extends IColumnType {
   name: keyof TextFormat;
 }
-export const textType: TextFormatColumn[] = [
+export const textColumnType: TextFormatColumn[] = [
   {
     name: 'langID',
     resolve: types.string,

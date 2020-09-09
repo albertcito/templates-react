@@ -45,6 +45,6 @@ export function messageFormat<T>(payload: AxiosResponse, key: string): MessageDa
 export function pageFormat<T>(payload: AxiosResponse, key: string): PaginationDataFormat<T> {
   return {
     ...messageFormat<T>(payload, key),
-    pagination: payload.data.data[key],
+    pagination: payload.data.data[key].pagination,
   };
 }

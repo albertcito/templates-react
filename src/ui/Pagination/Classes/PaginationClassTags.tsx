@@ -21,7 +21,7 @@ export class PaginationClassSearchLangTags extends PaginationClassSearchLang {
     if (p.tags) { this.tags = p.tags; }
   }
 
-  public seTtags(tags: number[]) {
+  public setTags(tags: number[]) {
     this.tags = tags;
   }
 

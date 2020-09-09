@@ -1,4 +1,4 @@
-import { PaginationArgumentsOptional, paginationVariables } from 'data/pagination/classes/PaginationClass';
+import { PaginationArgumentsOptional, paginationVariables } from 'ui/Pagination/Classes/PaginationClass';
 import PaginationGraphQL from 'util/GraphQL/PaginationGraphQL';
 import { LangColumns } from '../columns';
 import { LangColumnsType } from '../../type';

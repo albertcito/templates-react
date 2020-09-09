@@ -1,7 +1,7 @@
 import { GraphQL, types } from 'typed-graphql-class';
 import { IColumnType, IColVar } from 'typed-graphql-class/dist/interfaces';
 
-import { TextFormat, textType } from 'data/lang/text/TextType';
+import { TextFormat, textColumnType } from 'data/lang/text/TextType';
 
 export interface TranslationFormat {
   translationID: number;
@@ -30,10 +30,10 @@ export const TranslationColumnsType: TranslationFormatColumn[] = [
   },
   {
     name: 'text',
-    resolve: (fields: IColVar) => GraphQL.resolveType(fields, textType, { langID: 'String' }),
+    resolve: (fields: IColVar) => GraphQL.resolveType(fields, textColumnType, { langID: 'String' }),
   },
   {
     name: 'texts',
-    resolve: (fields: IColVar) => GraphQL.resolveType(fields, textType),
+    resolve: (fields: IColVar) => GraphQL.resolveType(fields, textColumnType),
   },
 ];

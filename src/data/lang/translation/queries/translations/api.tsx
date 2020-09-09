@@ -1,4 +1,4 @@
-import { PaginationSearchLangArgumentsFormat } from 'data/pagination/classes/PaginationClassLang';
+import { PaginationSearchLangArgumentsFormat } from 'ui/Pagination/Classes/PaginationClassLang';
 import { TranslationFormat } from '../../type';
 import TranslationDeleteMutation from './TranslationDeleteMutation';
 import TranslationsQuery from './TranslationsQuery';

@@ -11,7 +11,7 @@ import { ErrorCodeFormat } from 'util/dataFormat/globalStateFormat';
 import {
   PaginationArgumentsSearchLangOptionals,
   PaginationClassSearchLang,
-} from 'data/pagination/classes/PaginationClassLang';
+} from 'ui/Pagination/Classes/PaginationClassLang';
 
 const removeItemFail = (errors: ErrorCodeFormat) => {
   notificationErrors(errors);

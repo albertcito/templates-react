@@ -1,7 +1,7 @@
 import PaginationGraphQL from 'util/GraphQL/PaginationGraphQL';
 import { UserColumns } from '../columns';
 import { UserColumnsType } from '../../type';
-import { PaginationSearchArgumentsOptionals, paginationVariables } from 'data/pagination/classes/PaginationClassSearch';
+import { PaginationSearchArgumentsOptionals, paginationVariables } from 'ui/Pagination/Classes/PaginationClassSearch';
 
 class UsersQuery extends PaginationGraphQL {
   public constructor(variables: PaginationSearchArgumentsOptionals, columns: UserColumns) {

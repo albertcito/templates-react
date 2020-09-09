@@ -1,4 +1,4 @@
-import { PaginationArgumentsOptional } from 'data/pagination/classes/PaginationClass';
+import { PaginationArgumentsOptional } from 'ui/Pagination/Classes/PaginationClass';
 import ApiGraphQL from 'util/api/ApiGraphQL';
 import { UserFormat } from '../../type';
 import UserDeleteMutation from './UserDeleteMutation';

@@ -14,6 +14,12 @@ export const defaultTranslationColumns: TranslationKeys[] = [
   'code',
   'isBlocked',
   { texts: defaultTextColumns },
+  {
+    text: {
+      columns: defaultTextColumns,
+      variables: ['langID'],
+    },
+  },
 ];
 
 export class TranslationColumns implements GraphQLColumns<TranslationKeys[]> {

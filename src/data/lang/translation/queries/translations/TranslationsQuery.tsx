@@ -1,7 +1,7 @@
 import PaginationGraphQL from 'util/GraphQL/PaginationGraphQL';
 import { TranslationColumns } from '../columns';
 import { TranslationColumnsType } from '../../type';
-import { PaginationSearchLangArgumentsFormat, paginationVariables } from 'data/pagination/classes/PaginationClassLang';
+import { PaginationSearchLangArgumentsFormat, paginationVariables } from 'ui/Pagination/Classes/PaginationClassLang';
 
 class TranslationsQuery extends PaginationGraphQL {
   public constructor(variables: PaginationSearchLangArgumentsFormat, columns: TranslationColumns) {

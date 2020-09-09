@@ -1,7 +1,7 @@
-import React from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { PaginationDataFormat, MessageDataFormat } from 'util/api/util/serverDataFormat';
-import { PaginationArgumentsOptional, PaginationClass } from 'data/pagination/classes/PaginationClass';
+import { PaginationArgumentsOptional, PaginationClass } from 'ui/Pagination/Classes/PaginationClass';
 import { LangFormat } from '../type';
 import LangsApi from '../queries/langs/api';
 import useStatusData from 'use/generic/useStatusData';
@@ -20,22 +20,22 @@ function useLangs(
   parameters: PaginationArgumentsOptional = {},
   orderBy = 'lang.lang.lang_id',
 ) {
-  const pagination = React.useRef(new PaginationClass(
+  const pagination = useRef(new PaginationClass(
     orderBy,
     parameters,
   )).current;
 
   const { status, getData } = useStatusData<PaginationDataFormat<LangFormat[]>>();
-  const [data, setData] = React.useState<PaginationDataFormat<LangFormat[]>>();
+  const [data, setData] = useState<PaginationDataFormat<LangFormat[]>>();
   const { itemStatus, removeItem } = useItemCallback<MessageDataFormat<LangFormat>>();
 
-  const getAll = () => getData({
+  const getAll = useCallback(() => getData({
     getAll: () => langsApi.all(pagination.get()),
     onSuccess: setData,
     onFail: notificationErrors,
-  });
+  }), [getData, pagination]);
 
-  const removeItemData = React.useCallback((value: string, response: MessageDataFormat<LangFormat>) => {
+  const removeItemData = useCallback((value: string, response: MessageDataFormat<LangFormat>) => {
     setData((currentData) => removeByItem('langID', value, currentData));
     if (response.messages) {
       notificationMessages(response.messages);
