@@ -3,11 +3,12 @@ import { ICols, IColumnType, IColVar } from 'typed-graphql-class/dist/interfaces
 
 import { MessageColumnsType } from 'data/message/type';
 
-export default class MessagesDataQuery extends Operation {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default class MessagesDataQuery<T = any> extends Operation {
   public constructor(
     operationName: string,
     columnType: IColumnType[],
-    variables: { [key: string]: any },
+    variables: { [key: string]: T },
     columns: Array<ICols | string>,
     varTypes: { [key: string]: string },
   ) {

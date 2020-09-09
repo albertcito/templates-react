@@ -9,6 +9,7 @@ export interface RouteProperties {
   exact?: boolean;
   params?: {
     // To be solve, it's the URL params
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   };
   path: string;

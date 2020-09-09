@@ -13,14 +13,12 @@ const antIcon = (
     spin
   />
 );
-const Loading: React.FC<LoadingProperties> = ({ title = '...Loading' }) => {
-  return (
-    <div className='loading'>
-      <Spin indicator={antIcon} />
-      <br />
-      {title}
-    </div>
-  );
-}
+const Loading: React.FC<LoadingProperties> = ({ title = '...Loading' }) => (
+  <div className='loading'>
+    <Spin indicator={antIcon} />
+    <br />
+    {title}
+  </div>
+);
 
 export default Loading;

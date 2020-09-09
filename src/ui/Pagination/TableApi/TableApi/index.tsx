@@ -1,14 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { SorterResult, TablePaginationConfig } from 'antd/lib/table/interface';
+import { Table } from 'antd';
 
-import { PaginationClass } from 'ui/Pagination/Classes/PaginationClass';
-import { AscDescEnum } from 'ui/Pagination/Classes/PaginationClass';
-import { Table } from 'ui/Pagination/Table/Table';
-import { ColumnTableProperties } from 'util/columns/ColumnTableProperties';
+import { PaginationClass, AscDescEnum } from 'ui/Pagination/Classes/PaginationClass';
+import { ColumnTableProperties } from 'util/columns/base/ColumnTableProperties';
 import Loading from 'ui/Loading';
 import { PaginationDataFormat } from 'util/api/util/serverDataFormat';
 import { StatusFormat } from 'util/dataFormat/globalStateFormat';
-import TableColumns from 'util/columns/TableColumns';
+import TableColumns from 'util/columns/base/TableColumns';
+import { WrapItems } from '../../WrapItems';
+
+import './index.scss';
 
 export interface TableApiProperties {
   pagArgs: PaginationClass;
@@ -54,17 +57,20 @@ export const TableApi: React.FC<TableApiProperties> = ({
   if (!status.loaded) return <Loading />;
 
   return (
-    <Table
-      table={{
-        dataSource: data.data,
-        rowKey,
-        columns: columns.getColumns(),
-        onChange: onChangeTable,
-        pagination: false,
-      }}
+    <WrapItems
       pagination={data.pagination}
       status={status}
       onChangePagination={onChangePagination}
-    />
+    >
+      <Table
+        {...{
+          dataSource: data.data,
+          rowKey,
+          columns: columns.getColumns(),
+          onChange: onChangeTable,
+          pagination: false,
+        }}
+      />
+    </WrapItems>
   );
 };

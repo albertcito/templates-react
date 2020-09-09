@@ -7,6 +7,7 @@ export default class MessagesDataQuery extends Operation {
   public constructor(
     operationName: string,
     columnType: IColumnType[],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     variables: { [key: string]: any },
     columns: Array<ICols | string>,
     varTypes: { [key: string]: string },

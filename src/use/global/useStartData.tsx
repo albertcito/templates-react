@@ -46,7 +46,6 @@ export default function useStartData(): StartDataFormat {
 
   // The default lang for the webpage is English
   const [lang, setLang] = useState<string>('EN');
-
   /**
    * Add here every data that must to be loaded to make admin works
    */

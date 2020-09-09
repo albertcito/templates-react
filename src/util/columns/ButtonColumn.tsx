@@ -3,19 +3,20 @@ import { Button } from 'antd';
 import { ButtonProps } from 'antd/lib/button';
 import { ColumnProps } from 'antd/lib/table';
 
-import { ColumnTableProperties } from './ColumnTableProperties';
-import TableColumnAbstract from './TableColumnAbstract';
+import { ColumnTableProperties } from './base/ColumnTableProperties';
+import TableColumnAbstract from './base/TableColumnAbstract';
 
-export type TOnSelect = (data: any, index: number) => void;
-export interface ButtonColumnProperties {
-  onSelect: TOnSelect;
-  isLoading?: (data: any) => boolean;
+export interface ButtonColumnProperties<T> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  onSelect: (data: T, index: number) => void;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  isLoading?: (data: T) => boolean;
   buttonText?: string;
-  props?: ColumnProps<any>;
+  props?: ColumnProps<T>;
   btnProps?: ButtonProps;
 }
-export default class ButtonColumn implements TableColumnAbstract {
-  public readonly column: ColumnTableProperties;
+export default class ButtonColumn<T> implements TableColumnAbstract {
+  public readonly column: ColumnTableProperties<T>;
 
   constructor({
     buttonText = 'Select',
@@ -23,11 +24,11 @@ export default class ButtonColumn implements TableColumnAbstract {
     btnProps,
     props,
     isLoading,
-  }: ButtonColumnProperties) {
+  }: ButtonColumnProperties<T>) {
     this.column = {
       className: 'select-row',
       key: 'select',
-      render: function buttonColumn(text: any, data: any, index: number) {
+      render: function buttonColumn(text: string, data: T, index: number) {
         const loading = isLoading ? isLoading(data) : false;
         return (
           <Button

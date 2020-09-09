@@ -23,23 +23,21 @@ export const SearchInput: React.FC<SearchInputProperties> = ({
   children,
   addonBefore,
   spinning = false,
-}) => {
-  return (
-    <Spin spinning={spinning}>
-      <Input.Search
-        addonBefore={addonBefore}
-        onSearch={onSearch}
-        defaultValue={initialSearch}
-        className='input-search'
-        placeholder='Search'
-        enterButton
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          if (onChange) {
-            onChange(event.target.value);
-          }
-        }}
-      />
-      {children}
-    </Spin>
-  );
-};
+}) => (
+  <Spin spinning={spinning}>
+    <Input.Search
+      addonBefore={addonBefore}
+      onSearch={onSearch}
+      defaultValue={initialSearch}
+      className='input-search'
+      placeholder='Search'
+      enterButton
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        if (onChange) {
+          onChange(event.target.value);
+        }
+      }}
+    />
+    {children}
+  </Spin>
+);

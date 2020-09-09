@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { SorterResult, TablePaginationConfig } from 'antd/lib/table/interface';
+import { Table } from 'antd';
 
 import { AscDescEnum } from 'ui/Pagination/Classes/PaginationClass';
-import { ColumnTableProperties } from 'util/columns/ColumnTableProperties';
+import { ColumnTableProperties } from 'util/columns/base/ColumnTableProperties';
 import Loading from 'ui/Loading';
 import { PaginationDataFormat } from 'util/api/util/serverDataFormat';
 import { StatusFormat } from 'util/dataFormat/globalStateFormat';
-import TableColumns from 'util/columns/TableColumns';
+import TableColumns from 'util/columns/base/TableColumns';
 import { PaginationClassSearch } from 'ui/Pagination/Classes/PaginationClassSearch';
-import { TableSearch } from 'ui/Pagination/Table/TableSearch';
+import { WrapItemsSearch } from '../../WrapItems';
+
+import './index.scss';
 
 export interface TableSearchApiProperties {
   pagArgs: PaginationClassSearch;
@@ -62,18 +66,21 @@ export const TableSearchApi: React.FC<TableSearchApiProperties> = ({
   if (!status.loaded) return <Loading />;
 
   return (
-    <TableSearch
-      table={{
-        dataSource: data.data,
-        rowKey,
-        columns: columns.getColumns(),
-        onChange: onChangeTable,
-        pagination: false,
-      }}
+    <WrapItemsSearch
       pagination={data.pagination}
       status={status}
       onChangePagination={onChangePagination}
       onSearch={onSearch}
-    />
+    >
+      <Table
+        {...{
+          dataSource: data.data,
+          rowKey,
+          columns: columns.getColumns(),
+          onChange: onChangeTable,
+          pagination: false,
+        }}
+      />
+    </WrapItemsSearch>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Select } from 'antd';
 import React, { useRef } from 'react';
 
@@ -12,7 +13,6 @@ interface TagsSelectProperties {
 }
 
 const TagsSelect: React.FC<TagsSelectProperties> = ({ tags, onChange, onBlur }) => {
-
   const selected = React.useRef({ tags: [] }).current;
   const options = useRef(tags.map((tag: TagFormat) => ({
     value: tag.text.text,

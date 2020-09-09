@@ -8,12 +8,12 @@ import {
   IDColumn,
   TextColumn,
 } from 'util/columns';
-import TableColumns from 'util/columns/TableColumns';
+import TableColumns from 'util/columns/base/TableColumns';
 import { TranslationFormat } from 'data/lang/translation/type';
 
 const tableColumns = new TableColumns([
-  new IDColumn('lang.translation.translation_id', 'translationID'),
-  new TextColumn(),
+  new IDColumn<TranslationFormat>('lang.translation.translation_id', 'translationID'),
+  new TextColumn<TranslationFormat>({ getTitle: (data: TranslationFormat) => data.text }),
 ]);
 
 const Translation: React.FC = () => {

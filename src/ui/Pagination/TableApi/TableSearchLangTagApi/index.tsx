@@ -1,16 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { SorterResult, TablePaginationConfig } from 'antd/lib/table/interface';
+import { Table } from 'antd';
 
 import { AscDescEnum } from 'ui/Pagination/Classes/PaginationClass';
-import { ColumnTableProperties } from 'util/columns/ColumnTableProperties';
+import { ColumnTableProperties } from 'util/columns/base/ColumnTableProperties';
 import Loading from 'ui/Loading';
 import { PaginationDataFormat } from 'util/api/util/serverDataFormat';
 import { StatusFormat } from 'util/dataFormat/globalStateFormat';
-import TableColumns from 'util/columns/TableColumns';
+import TableColumns from 'util/columns/base/TableColumns';
 import { SearchInputLangProperties } from 'ui/SearchInput';
 import { PaginationClassSearchLangTags } from 'ui/Pagination/Classes/PaginationClassTags';
-import { TableSearchLangTag } from 'ui/Pagination/Table/TableSearchLangTag';
 import { TagFormat } from 'data/generic/tag/type';
+import { WrapItemsSearchLangTag } from '../../WrapItems';
+
+import './index.scss';
 
 export interface TableSearchLangTagApiProperties extends Omit<SearchInputLangProperties, 'onSelectLang' | 'onSearch'> {
   pagArgs: PaginationClassSearchLangTags;
@@ -74,14 +78,7 @@ export const TableSearchLangTagApi: React.FC<TableSearchLangTagApiProperties> = 
   if (!status.loaded) return <Loading />;
 
   return (
-    <TableSearchLangTag
-      table={{
-        dataSource: data.data,
-        rowKey,
-        columns: columns.getColumns(),
-        onChange: onChangeTable,
-        pagination: false,
-      }}
+    <WrapItemsSearchLangTag
       pagination={data.pagination}
       status={status}
       onChangePagination={onChangePagination}
@@ -91,6 +88,17 @@ export const TableSearchLangTagApi: React.FC<TableSearchLangTagApiProperties> = 
       lang={lang}
       onSelectLang={onSelectLangInternal}
       tags={tags}
-    />
+    >
+      <Table
+        {...{
+          dataSource: data.data,
+          rowKey,
+          columns: columns.getColumns(),
+          onChange: onChangeTable,
+          pagination: false,
+        }}
+        expandable={{ childrenColumnName: 'no_column_svg_problem_with_children_column_name' }}
+      />
+    </WrapItemsSearchLangTag>
   );
 };

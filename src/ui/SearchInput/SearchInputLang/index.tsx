@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Select } from 'antd';
 import React from 'react';
 
@@ -36,7 +37,7 @@ export const SearchInputLang: React.FC<SearchInputLangProperties> = ({
 export interface SelectLangsProperties {
   langs: LangFormat[];
   lang: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onChange: (value: any, option: any) => void;
 }
 

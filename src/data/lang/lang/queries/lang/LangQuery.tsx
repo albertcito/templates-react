@@ -3,7 +3,7 @@ import { LangColumnsType } from '../../type';
 import { LangColumns } from '../columns';
 
 class LangQuery extends MessagesDataQuery {
-  constructor(langID: number, columns: LangColumns) {
+  constructor(langID: string, columns: LangColumns) {
     super(
       'lang',
       LangColumnsType,

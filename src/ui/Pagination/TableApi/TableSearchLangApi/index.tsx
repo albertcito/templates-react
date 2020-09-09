@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { SorterResult, TablePaginationConfig } from 'antd/lib/table/interface';
 import { Table } from 'antd';
 
 import { WrapItemsSearchLang } from '../../WrapItems';
 import { AscDescEnum } from 'ui/Pagination/Classes/PaginationClass';
-import { ColumnTableProperties } from 'util/columns/ColumnTableProperties';
+import { ColumnTableProperties } from 'util/columns/base/ColumnTableProperties';
 import Loading from 'ui/Loading';
 import { PaginationDataFormat } from 'util/api/util/serverDataFormat';
 import { StatusFormat } from 'util/dataFormat/globalStateFormat';
-import TableColumns from 'util/columns/TableColumns';
+import TableColumns from 'util/columns/base/TableColumns';
 import { PaginationClassSearchLang } from 'ui/Pagination/Classes/PaginationClassLang';
 import { SearchInputLangProperties } from 'ui/SearchInput';
 
@@ -54,8 +55,8 @@ export const TableSearchLangApi: React.FC<TableSearchLangApiProperties> = ({
   };
 
   const onChangeTable = (
-    pagination: TablePaginationConfig,
-    filters: Record<string, (string | number)[] | null>,
+    _: TablePaginationConfig,
+    __: Record<string, (string | number)[] | null>,
     sorter: SorterResult<ColumnTableProperties> | SorterResult<ColumnTableProperties>[],
   ): void => {
     if (Array.isArray(sorter)) { return; }
