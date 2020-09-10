@@ -5,20 +5,13 @@ export interface UserStorageFormat {
   accessToken: string;
 }
 
-interface UserStorageKeyFormat {
-  userID: string;
-  accessToken: string;
-}
-
 class Storage {
-  private readonly user: UserStorageKeyFormat;
+  private readonly user = {
+    accessToken: 'accessToken',
+    userID: 'userID',
+  };
 
-  public constructor() {
-    this.user = {
-      accessToken: 'accessToken',
-      userID: 'userID',
-    };
-  }
+  private readonly langID = 'langID';
 
   public getUser(): UserStorageFormat | null {
     const userID = localStorage.getItem(this.user.userID);
@@ -52,6 +45,15 @@ class Storage {
   public getToken(): string {
     const accessToken = localStorage.getItem(this.user.accessToken);
     return accessToken ?? '';
+  }
+
+  public getLangID(): string {
+    const langID = localStorage.getItem(this.langID);
+    return langID ?? '';
+  }
+
+  public setLangID(langID: string) {
+    return localStorage.setItem(this.langID, langID);
   }
 
   public logout() {

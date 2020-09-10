@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 interface AddNewLinkProperties {
   link: string;
-  addNew?: string;
+  title?: React.ReactNode;
 }
-const AddNewLink: React.FC<AddNewLinkProperties> = ({ link, addNew = 'generic.addNew' }) => (
+const AddNewLink: React.FC<AddNewLinkProperties> = ({ link, title = 'Add new' }) => (
   <Button className='button-right' type='primary'>
     <Link to={`${link}`}>
-      {addNew}
+      {title}
     </Link>
   </Button>
 );

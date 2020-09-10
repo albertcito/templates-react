@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Checkbox, Form, Spin, Alert } from 'antd';
+import { FormattedMessage } from 'react-intl';
 
 import { StatusFormat } from 'util/dataFormat/globalStateFormat';
 import { TagFormat } from 'data/generic/tag/type';
@@ -38,7 +39,7 @@ const TagForm: React.FC<TagFormProperties> = ({
     <Spin spinning={status.submit}>
       {(tag && tag.isBlocked) && (
         <Alert
-          message='generic.blockedMsg'
+          message={<FormattedMessage id='generic.blockedMsg' />}
           type='warning'
           showIcon
           style={{ marginBottom: 20 }}

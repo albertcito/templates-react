@@ -6,6 +6,7 @@ import useLogout from 'data/security/session/logout/useLogout';
 import { StatusFormat } from 'util/dataFormat/globalStateFormat';
 import useUnauthorized from './useUnauthorized';
 import useStartData, { StartDataFormat } from './useStartData';
+import useIntl, { UseIntlFormat } from './useIntl';
 
 export interface UseGlobalProperties {
   sessions: Omit<UseSessionProperties, 'getSession' | 'delSession'>;
@@ -14,12 +15,14 @@ export interface UseGlobalProperties {
     status: StatusFormat;
   };
   appData: Omit<StartDataFormat, 'getData'>;
+  intl: UseIntlFormat;
 }
 
 const useGlobal = (): UseGlobalProperties => {
   const { getSession, delSession, ...sessions } = useSession();
   const { doLogout, status: logoutStatus } = useLogout();
   const { getData, ...appData } = useStartData();
+  const intl = useIntl();
 
   useUnauthorized(delSession);
 
@@ -39,6 +42,7 @@ const useGlobal = (): UseGlobalProperties => {
       status: logoutStatus,
     },
     appData,
+    intl,
   };
 };
 
