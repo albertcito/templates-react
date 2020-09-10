@@ -5,7 +5,7 @@ import './index.scss';
 import Pagination from '../../Pagination';
 import { PaginationFormat } from 'data/pagination/type';
 import { StatusFormat } from 'util/dataFormat/globalStateFormat';
-import AlertError from 'ui/Errors/AlertError';
+import AlertError from 'ui/Alert/AlertError';
 import Loading from 'ui/Loading';
 
 export interface WrapItemsProperties {

@@ -3,7 +3,7 @@ import { Button, Form, Input, Spin, notification } from 'antd';
 import React from 'react';
 
 import { StatusFormat } from 'util/dataFormat/globalStateFormat';
-import AlertError from 'ui/Errors/AlertError';
+import AlertError from 'ui/Alert/AlertError';
 
 const onClick = () => notification.info({
   message: 'To be implemented',

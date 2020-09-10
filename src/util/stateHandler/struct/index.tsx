@@ -29,3 +29,14 @@ export function removeKeys<T>(struct: StructFormat<T>, keys: (string | number)[]
     Object.entries(struct).filter(([key]) => !keys.includes(key)),
   );
 }
+
+/**
+ * Remove undefined or null elements from a struct
+ *
+ * @param struct
+ */
+export function removeEmpty<T>(struct: StructFormat<T>): StructFormat<T> {
+  return Object.fromEntries(
+    Object.entries(struct).filter(([key]) => (struct[key] !== undefined && struct[key] !== null)),
+  );
+}

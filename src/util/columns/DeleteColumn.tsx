@@ -9,13 +9,14 @@ import ConfirmDelete from 'ui/Buttons/ConfirmDelete';
 export interface DeleteColumnProperties<T> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onDelete?: (item: T, index: number) => void;
-  loading?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  isLoading?: (item: T, index: number) => boolean;
   props?: ColumnProps<T>;
 }
 export default class DeleteColumn<T> implements TableColumnAbstract {
   public readonly column: ColumnTableProperties;
 
-  constructor({ onDelete, loading, props }: DeleteColumnProperties<T>) {
+  constructor({ onDelete, isLoading, props }: DeleteColumnProperties<T>) {
     const column: ColumnTableProperties = {
       className: 'fit-center-column',
       key: 'delete',
@@ -29,7 +30,7 @@ export default class DeleteColumn<T> implements TableColumnAbstract {
         return (
           <ConfirmDelete
             onConfirm={() => onDelete(data, index)}
-            loading={loading}
+            loading={isLoading ? isLoading(data, index) : false}
           />
         );
       };

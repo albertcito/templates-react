@@ -3,7 +3,7 @@ import { notification } from 'antd';
 
 import { MessageFormat } from 'data/message/type';
 import { ErrorCodeFormat } from 'util/dataFormat/globalStateFormat';
-import Errors from 'ui/Errors';
+import Errors from 'ui/Alert/Errors';
 
 export const notificationMessages = (messages: MessageFormat[]) => {
   messages.forEach((message) => {

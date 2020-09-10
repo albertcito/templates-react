@@ -24,9 +24,9 @@ const useGlobal = (): UseGlobalProperties => {
   useUnauthorized(delSession);
 
   React.useEffect(() => {
-    const localUser = storage.getUser();
-    if (localUser) {
-      getSession(localUser);
+    const storageUser = storage.getUser();
+    if (storageUser) {
+      getSession(storageUser);
     }
   }, [getSession]);
 

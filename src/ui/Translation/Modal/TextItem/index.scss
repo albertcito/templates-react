@@ -1,0 +1,30 @@
+.translation-input {
+  position: relative;
+  .info-icon {
+    position: absolute;
+    top: -18px;
+    right: 20px;
+    height: 14px;
+    line-height: 1;
+    width: 14px;
+  }
+  textarea {
+    resize: none;
+ }
+ .translation-input-remove-translation {
+    position: absolute;
+    top: -18px;
+    right: 2px;
+    height: 14px;
+    line-height: 1;
+    width: 14px;
+    button {
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      &:hover {
+        color: #1890ff;
+      }
+    }
+  }
+}

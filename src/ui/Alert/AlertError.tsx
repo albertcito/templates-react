@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert } from 'antd';
 
-import Errors, { ErrorsProperties } from '.';
+import Errors, { ErrorsProperties } from './Errors';
 
 export interface AlertErrorProperties extends ErrorsProperties {
   mgBtm?: boolean;
