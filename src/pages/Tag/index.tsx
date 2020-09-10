@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { GlobalContext } from 'use/global';
 import useTags from 'data/generic/tag/use/useTags';
@@ -45,9 +46,12 @@ const Tag: React.FC<PageProperties> = ({ route }) => {
     <div>
       <div className='title'>
         <h1 className='title-left'>
-          Tags
+          <FormattedMessage id='tags.tags' />
         </h1>
-        <AddNewLink link={`${route.location.pathname}/add`} />
+        <AddNewLink
+          link={`${route.location.pathname}/add`}
+          title={<FormattedMessage id='generic.addNew' />}
+        />
       </div>
       <TableSearchLangApi
         data={data}
