@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/templates-react/static/css/main.6e15a982.chunk.css",
-    "main.js": "/templates-react/static/js/main.f210d042.chunk.js",
-    "main.js.map": "/templates-react/static/js/main.f210d042.chunk.js.map",
+    "main.js": "/templates-react/static/js/main.7240f182.chunk.js",
+    "main.js.map": "/templates-react/static/js/main.7240f182.chunk.js.map",
     "runtime-main.js": "/templates-react/static/js/runtime-main.78c6931f.js",
     "runtime-main.js.map": "/templates-react/static/js/runtime-main.78c6931f.js.map",
     "static/css/2.80348574.chunk.css": "/templates-react/static/css/2.80348574.chunk.css",
-    "static/js/2.a115d619.chunk.js": "/templates-react/static/js/2.a115d619.chunk.js",
-    "static/js/2.a115d619.chunk.js.map": "/templates-react/static/js/2.a115d619.chunk.js.map",
+    "static/js/2.513b4f85.chunk.js": "/templates-react/static/js/2.513b4f85.chunk.js",
+    "static/js/2.513b4f85.chunk.js.map": "/templates-react/static/js/2.513b4f85.chunk.js.map",
     "index.html": "/templates-react/index.html",
-    "precache-manifest.efc961df6d55e8e28b8395678c4635a6.js": "/templates-react/precache-manifest.efc961df6d55e8e28b8395678c4635a6.js",
+    "precache-manifest.073e38c0abba8f80109a91451c9d6fca.js": "/templates-react/precache-manifest.073e38c0abba8f80109a91451c9d6fca.js",
     "service-worker.js": "/templates-react/service-worker.js",
     "static/css/2.80348574.chunk.css.map": "/templates-react/static/css/2.80348574.chunk.css.map",
     "static/css/main.6e15a982.chunk.css.map": "/templates-react/static/css/main.6e15a982.chunk.css.map",
-    "static/js/2.a115d619.chunk.js.LICENSE.txt": "/templates-react/static/js/2.a115d619.chunk.js.LICENSE.txt",
+    "static/js/2.513b4f85.chunk.js.LICENSE.txt": "/templates-react/static/js/2.513b4f85.chunk.js.LICENSE.txt",
     "static/media/error403.svg": "/templates-react/static/media/error403.2dda86ad.svg",
     "static/media/error404.svg": "/templates-react/static/media/error404.9ed13bbe.svg",
     "static/media/error500.svg": "/templates-react/static/media/error500.990ae4d0.svg"
@@ -21,8 +21,8 @@
   "entrypoints": [
     "static/js/runtime-main.78c6931f.js",
     "static/css/2.80348574.chunk.css",
-    "static/js/2.a115d619.chunk.js",
+    "static/js/2.513b4f85.chunk.js",
     "static/css/main.6e15a982.chunk.css",
-    "static/js/main.f210d042.chunk.js"
+    "static/js/main.7240f182.chunk.js"
   ]
 }
