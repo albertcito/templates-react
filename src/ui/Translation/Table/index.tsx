@@ -28,11 +28,6 @@ const TranslationTable: React.FC<TranslationTableProperties> = ({
 
   useEffect(() => { getAll(); }, [getAll]);
 
-  if (!langs) {
-    return <div>ssss</div>;
-    // throw new Error('Langs should be already loaded, I need to fix it');
-  }
-
   if (!data) {
     return <Loading />;
   }
@@ -65,7 +60,7 @@ const TranslationTable: React.FC<TranslationTableProperties> = ({
       status={status}
       pagArgs={pagination}
       lang='EN'
-      langs={langs.data}
+      langs={langs}
       columns={tableColumns}
       onSearch={() => {}}
       onSelectLang={() => {}}

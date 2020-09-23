@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 import { ErrorCodeFormat } from '../../dataFormat/globalStateFormat';
 import ApiError from 'util/api/util/ApiError';
 
@@ -7,18 +9,14 @@ import ApiError from 'util/api/util/ApiError';
  * @param error
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const errorFormat = (error: any): ErrorCodeFormat => {
-  const networkError = (error.message === 'Network Error');
-  const status = error.response?.status;
-  return {
-    networkError,
-    code: status,
-    errors: [{
-      type: 'messageError',
-      message: error.message,
-    }],
-  };
-};
+const errorFormat = (error: AxiosError): ErrorCodeFormat => ({
+  networkError: (error.message === 'Network Error'),
+  code: error.response?.status,
+  errors: [{
+    type: 'messageError',
+    message: error.message,
+  }],
+});
 
 async function requestData<T>(
   api: () => Promise<T>,
@@ -37,7 +35,7 @@ async function requestData<T>(
   } catch (error) {
     // This is API error, as validation form.
     if (error.constructor === ApiError) {
-      onFail(error.error);
+      onFail(error.getErrorFormat());
       if (onFinish) {
         onFinish();
       }

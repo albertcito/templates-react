@@ -24,7 +24,7 @@ class ApiGraphQL {
     this.api.interceptors.response.use(
       interceptorSuccess,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (error: any) => { throw error; },
+      // (error: any) => { throw error; },
     );
   }
 

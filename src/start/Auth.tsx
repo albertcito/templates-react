@@ -19,7 +19,6 @@ const Auth = ({ appRoute, Template, route, type }: AuthProperties) => {
   const {
     sessions: { user, status },
     logout: { status: statusLogout },
-    appData: { loaded, langs },
   } = React.useContext(GlobalContext);
 
   if (status.submit) {

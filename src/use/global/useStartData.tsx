@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import useLangs from 'data/lang/lang/use/useLangs';
 import { StatusFormat, ErrorFormat } from 'util/dataFormat/globalStateFormat';
 import { LangFormat } from 'data/lang/lang/type';
-import { PaginationDataFormat } from 'util/api/util/serverDataFormat';
 
 export interface StartDataFormat {
   errors: ErrorFormat[];
@@ -11,7 +9,7 @@ export interface StartDataFormat {
   loaded: boolean;
   submit: boolean;
 
-  langs?: PaginationDataFormat<LangFormat[]>;
+  langs: LangFormat[];
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setLang: (lang: string) => void;
   lang: string;
@@ -38,26 +36,35 @@ export default function useStartData(): StartDataFormat {
   const [errors, setErrors] = useState<ErrorFormat[]>([]);
 
   // App doesn't works whitout this data
-  const {
-    data: langs,
-    getAll: getLangs,
-    status: stateLangs,
-  } = useLangs();
+  const langs: LangFormat[] = [
+    {
+      langID: 'ES',
+      name: 'Spanish',
+      localName: 'Espa\u00F1ol',
+      active: true,
+      isBlocked: false,
+    },
+    {
+      langID: 'EN',
+      name: 'English',
+      localName: 'English',
+      active: true,
+      isBlocked: false,
+    },
+  ];
 
   // The default lang for the webpage is English
   const [lang, setLang] = useState<string>('EN');
   /**
    * Add here every data that must to be loaded to make admin works
    */
-  const getData = useCallback(async () => {
-    await getLangs();
-  }, [getLangs]);
+  const getData = useCallback(async () => {}, []);
 
   /**
    * To define if an request has errors
    */
   const loadErrors = useCallback(() => {
-    const status = [stateLangs];
+    const status: StatusFormat[] = [];
     let newErrors: ErrorFormat[] = [];
     status.forEach((state) => {
       if (state.error?.errors) {
@@ -65,17 +72,17 @@ export default function useStartData(): StartDataFormat {
       }
     });
     if (newErrors.length > 0) { setErrors(newErrors); }
-  }, [stateLangs]);
+  }, []);
 
   /**
    * Update admin status if some hooks change
    */
   useEffect(() => {
-    const status = [stateLangs];
+    const status: StatusFormat[] = [];
     setSubmit(getStateStatus(status, 'submit'));
     setLoaded(getStateStatus(status, 'loaded'));
     loadErrors();
-  }, [loadErrors, stateLangs]);
+  }, [loadErrors]);
 
   return {
     errors,
